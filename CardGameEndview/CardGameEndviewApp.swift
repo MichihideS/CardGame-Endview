@@ -11,7 +11,7 @@ import SwiftUI
 struct CardGameEndviewApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            StartView()
         }
     }
 }

@@ -8,12 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		9CD413D22CC410810002629B /* CardGameEndviewApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD413D12CC410810002629B /* CardGameEndviewApp.swift */; };
-		9CD413D42CC410810002629B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD413D32CC410810002629B /* ContentView.swift */; };
+		9CD413D42CC410810002629B /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD413D32CC410810002629B /* StartView.swift */; };
 		9CD413D62CC410820002629B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CD413D52CC410820002629B /* Assets.xcassets */; };
 		9CD413D92CC410820002629B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CD413D82CC410820002629B /* Preview Assets.xcassets */; };
 		9CD413E32CC410820002629B /* CardGameEndviewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD413E22CC410820002629B /* CardGameEndviewTests.swift */; };
 		9CD413ED2CC410820002629B /* CardGameEndviewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD413EC2CC410820002629B /* CardGameEndviewUITests.swift */; };
 		9CD413EF2CC410820002629B /* CardGameEndviewUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD413EE2CC410820002629B /* CardGameEndviewUITestsLaunchTests.swift */; };
+		9CD413FF2CC4119D0002629B /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD413FE2CC4119D0002629B /* Card.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +37,7 @@
 /* Begin PBXFileReference section */
 		9CD413CE2CC410810002629B /* CardGameEndview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardGameEndview.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CD413D12CC410810002629B /* CardGameEndviewApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGameEndviewApp.swift; sourceTree = "<group>"; };
-		9CD413D32CC410810002629B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		9CD413D32CC410810002629B /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		9CD413D52CC410820002629B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9CD413D82CC410820002629B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9CD413DE2CC410820002629B /* CardGameEndviewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CardGameEndviewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +45,7 @@
 		9CD413E82CC410820002629B /* CardGameEndviewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CardGameEndviewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CD413EC2CC410820002629B /* CardGameEndviewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGameEndviewUITests.swift; sourceTree = "<group>"; };
 		9CD413EE2CC410820002629B /* CardGameEndviewUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGameEndviewUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		9CD413FE2CC4119D0002629B /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,8 +96,10 @@
 		9CD413D02CC410810002629B /* CardGameEndview */ = {
 			isa = PBXGroup;
 			children = (
+				9CD413FB2CC410A60002629B /* Model */,
+				9CD413FC2CC410AD0002629B /* View */,
+				9CD413FD2CC410B60002629B /* ViewModel */,
 				9CD413D12CC410810002629B /* CardGameEndviewApp.swift */,
-				9CD413D32CC410810002629B /* ContentView.swift */,
 				9CD413D52CC410820002629B /* Assets.xcassets */,
 				9CD413D72CC410820002629B /* Preview Content */,
 			);
@@ -125,6 +129,29 @@
 				9CD413EE2CC410820002629B /* CardGameEndviewUITestsLaunchTests.swift */,
 			);
 			path = CardGameEndviewUITests;
+			sourceTree = "<group>";
+		};
+		9CD413FB2CC410A60002629B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9CD413FE2CC4119D0002629B /* Card.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9CD413FC2CC410AD0002629B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9CD413D32CC410810002629B /* StartView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9CD413FD2CC410B60002629B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,7 +284,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9CD413D42CC410810002629B /* ContentView.swift in Sources */,
+				9CD413D42CC410810002629B /* StartView.swift in Sources */,
+				9CD413FF2CC4119D0002629B /* Card.swift in Sources */,
 				9CD413D22CC410810002629B /* CardGameEndviewApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
