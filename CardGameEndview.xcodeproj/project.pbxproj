@@ -15,6 +15,9 @@
 		9CD413ED2CC410820002629B /* CardGameEndviewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD413EC2CC410820002629B /* CardGameEndviewUITests.swift */; };
 		9CD413EF2CC410820002629B /* CardGameEndviewUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD413EE2CC410820002629B /* CardGameEndviewUITestsLaunchTests.swift */; };
 		9CD413FF2CC4119D0002629B /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD413FE2CC4119D0002629B /* Card.swift */; };
+		9CD414012CC415580002629B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD414002CC415580002629B /* LoginView.swift */; };
+		9CD414032CC418370002629B /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD414022CC418370002629B /* GameView.swift */; };
+		9CD414052CC418540002629B /* LoggedInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD414042CC418540002629B /* LoggedInView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +49,9 @@
 		9CD413EC2CC410820002629B /* CardGameEndviewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGameEndviewUITests.swift; sourceTree = "<group>"; };
 		9CD413EE2CC410820002629B /* CardGameEndviewUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGameEndviewUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		9CD413FE2CC4119D0002629B /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		9CD414002CC415580002629B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		9CD414022CC418370002629B /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		9CD414042CC418540002629B /* LoggedInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +149,9 @@
 			isa = PBXGroup;
 			children = (
 				9CD413D32CC410810002629B /* StartView.swift */,
+				9CD414002CC415580002629B /* LoginView.swift */,
+				9CD414022CC418370002629B /* GameView.swift */,
+				9CD414042CC418540002629B /* LoggedInView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -285,8 +294,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CD413D42CC410810002629B /* StartView.swift in Sources */,
+				9CD414052CC418540002629B /* LoggedInView.swift in Sources */,
 				9CD413FF2CC4119D0002629B /* Card.swift in Sources */,
+				9CD414012CC415580002629B /* LoginView.swift in Sources */,
 				9CD413D22CC410810002629B /* CardGameEndviewApp.swift in Sources */,
+				9CD414032CC418370002629B /* GameView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
