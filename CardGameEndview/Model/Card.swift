@@ -8,6 +8,7 @@
 import Foundation
 
 struct Card {
+    var name: String
     var attack: Int
     var defense: Int
     var cost: Int

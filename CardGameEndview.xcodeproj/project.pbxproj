@@ -18,6 +18,9 @@
 		9CD414012CC415580002629B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD414002CC415580002629B /* LoginView.swift */; };
 		9CD414032CC418370002629B /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD414022CC418370002629B /* GameView.swift */; };
 		9CD414052CC418540002629B /* LoggedInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD414042CC418540002629B /* LoggedInView.swift */; };
+		9CD4143F2CC5A7760002629B /* CardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD4143E2CC5A7760002629B /* CardDeck.swift */; };
+		9CD414412CC5A8030002629B /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD414402CC5A8030002629B /* Game.swift */; };
+		9CD414432CC5A8390002629B /* RandomizerCardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD414422CC5A8390002629B /* RandomizerCardDeck.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +55,9 @@
 		9CD414002CC415580002629B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		9CD414022CC418370002629B /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		9CD414042CC418540002629B /* LoggedInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInView.swift; sourceTree = "<group>"; };
+		9CD4143E2CC5A7760002629B /* CardDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDeck.swift; sourceTree = "<group>"; };
+		9CD414402CC5A8030002629B /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		9CD414422CC5A8390002629B /* RandomizerCardDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomizerCardDeck.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				9CD413FE2CC4119D0002629B /* Card.swift */,
+				9CD4143E2CC5A7760002629B /* CardDeck.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -159,6 +166,8 @@
 		9CD413FD2CC410B60002629B /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				9CD414402CC5A8030002629B /* Game.swift */,
+				9CD414422CC5A8390002629B /* RandomizerCardDeck.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -295,10 +304,13 @@
 			files = (
 				9CD413D42CC410810002629B /* StartView.swift in Sources */,
 				9CD414052CC418540002629B /* LoggedInView.swift in Sources */,
+				9CD414432CC5A8390002629B /* RandomizerCardDeck.swift in Sources */,
 				9CD413FF2CC4119D0002629B /* Card.swift in Sources */,
 				9CD414012CC415580002629B /* LoginView.swift in Sources */,
+				9CD4143F2CC5A7760002629B /* CardDeck.swift in Sources */,
 				9CD413D22CC410810002629B /* CardGameEndviewApp.swift in Sources */,
 				9CD414032CC418370002629B /* GameView.swift in Sources */,
+				9CD414412CC5A8030002629B /* Game.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
