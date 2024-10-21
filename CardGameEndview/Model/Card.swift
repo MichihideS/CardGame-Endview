@@ -7,10 +7,12 @@
 
 import Foundation
 
-struct Card {
+struct Card: Identifiable {
+    var id = UUID()
     var name: String
     var attack: Int
     var defense: Int
     var cost: Int
-    var special: String
+    var special: Int
+    var image: String
 }

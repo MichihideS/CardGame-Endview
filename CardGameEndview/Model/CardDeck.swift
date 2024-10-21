@@ -7,10 +7,25 @@
 
 import Foundation
 
+let BURN = 1
+let DROWN = 2
+let DEATH = 3
+let WIND = 4
+
 struct CardDeck {
-    let deckOfCards = [
-        Card(name: "Attacker", attack: 30, defense: 20, cost: 5, special: ""),
-        Card(name: "Ultimate", attack: 50, defense: 30, cost: 8, special: ""),
-        Card(name: "Testsuper", attack: 10, defense: 5, cost: 3, special: "")
-    ]
+    
+    let deckOfCards: [Card] = [
+        Card(name: "Water Strike", attack: 3, defense: 0, cost: 5, special: DROWN, image: ""),
+        Card(name: "Fiery Wave", attack: 0, defense: 0, cost: 3, special: BURN, image: ""),
+        Card(name: "Massive Wall", attack: 0, defense: 20, cost: 3, special: 0, image: ""),
+        Card(name: "Dark Energy", attack: 3, defense: 0, cost: 4, special: 0, image: ""),
+        Card(name: "Big Poke", attack: 8, defense: 0, cost: 5, special: 0, image: ""),
+        Card(name: "Small Paper", attack: 0, defense: 3, cost: 2, special: 0, image: ""),
+        Card(name: "Pen of Hell", attack: 20, defense: 0, cost: 6, special: 0, image: ""),
+        Card(name: "Absorbing Tissue", attack: 0, defense: 2, cost: 1, special: 0, image: ""),
+        Card(name: "Dark Mist", attack: 5, defense: 0, cost: 5, special: DEATH, image: ""),
+        Card(name: "Dark Assassin", attack: 1, defense: 0, cost: 3, special: DEATH, image: ""),
+        Card(name: "Whirlpool", attack: 0, defense: 0, cost: 4, special: DROWN, image: ""),
+        Card(name: "Swift Strike", attack: 2, defense: 0, cost: 2, special: WIND, image: "")
+            ]
 }

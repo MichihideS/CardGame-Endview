@@ -8,16 +8,18 @@
 import SwiftUI
 
 struct GameView: View {
+    var cardDeck = CardDeck()
+    
     @State var text: String = "Test"
     
     @State var counter: Int = 0
     
-    @State var playerCards = []
+    @State var playerCards: [Card] = []
     
     func drawCards() {
-        while counter < 3 {
-            let randomNumber = Int.random(in: 0...2)
-            playerCards.append(CardDeck().deckOfCards[randomNumber])
+        while counter < 6 {
+            let randomNumber = Int.random(in: 0...11)
+            playerCards.append(cardDeck.deckOfCards[randomNumber])
             counter += 1
         }
     }
@@ -31,7 +33,21 @@ struct GameView: View {
                 print(playerCards)
             }, label: {
                 Text("DRAWTEST")
+            }).padding()
+            
+            Button(action: {
+                playerCards = []
+                counter = 0
+                print(playerCards)
+            }, label: {
+                Text("Reset")
             })
+            
+            HStack {
+                ForEach(playerCards) { cards in
+                    CardView(card: cards)
+                }
+            }
         }
     }
 }

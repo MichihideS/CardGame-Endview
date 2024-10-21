@@ -21,6 +21,7 @@
 		9CD4143F2CC5A7760002629B /* CardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD4143E2CC5A7760002629B /* CardDeck.swift */; };
 		9CD414412CC5A8030002629B /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD414402CC5A8030002629B /* Game.swift */; };
 		9CD414432CC5A8390002629B /* RandomizerCardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD414422CC5A8390002629B /* RandomizerCardDeck.swift */; };
+		9CD414462CC654070002629B /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD414452CC654070002629B /* CardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		9CD4143E2CC5A7760002629B /* CardDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDeck.swift; sourceTree = "<group>"; };
 		9CD414402CC5A8030002629B /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		9CD414422CC5A8390002629B /* RandomizerCardDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomizerCardDeck.swift; sourceTree = "<group>"; };
+		9CD414452CC654070002629B /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +157,7 @@
 		9CD413FC2CC410AD0002629B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9CD414442CC653CA0002629B /* Components */,
 				9CD413D32CC410810002629B /* StartView.swift */,
 				9CD414002CC415580002629B /* LoginView.swift */,
 				9CD414022CC418370002629B /* GameView.swift */,
@@ -170,6 +173,14 @@
 				9CD414422CC5A8390002629B /* RandomizerCardDeck.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		9CD414442CC653CA0002629B /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				9CD414452CC654070002629B /* CardView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -306,6 +317,7 @@
 				9CD414052CC418540002629B /* LoggedInView.swift in Sources */,
 				9CD414432CC5A8390002629B /* RandomizerCardDeck.swift in Sources */,
 				9CD413FF2CC4119D0002629B /* Card.swift in Sources */,
+				9CD414462CC654070002629B /* CardView.swift in Sources */,
 				9CD414012CC415580002629B /* LoginView.swift in Sources */,
 				9CD4143F2CC5A7760002629B /* CardDeck.swift in Sources */,
 				9CD413D22CC410810002629B /* CardGameEndviewApp.swift in Sources */,
