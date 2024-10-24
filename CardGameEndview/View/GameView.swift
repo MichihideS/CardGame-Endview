@@ -8,50 +8,61 @@
 import SwiftUI
 
 struct GameView: View {
-    var cardDeck = CardDeck()
+    @EnvironmentObject var game: Game
     
-    @State var text: String = "Test"
-    
-    @State var counter: Int = 0
-    
-    @State var playerCards: [Card] = []
-    
-    func drawCards() {
-        while counter < 6 {
-            let randomNumber = Int.random(in: 0...11)
-            playerCards.append(cardDeck.deckOfCards[randomNumber])
-            counter += 1
-        }
-    }
+
     
     var body: some View {
         VStack {
-            Text("\(text)")
-            
             Button(action: {
-                drawCards()
-                print(playerCards)
+                game.drawCards(player: 1)
+                game.counter = 0
+                game.drawCards(player: 2)
+                print(game.playerCards)
             }, label: {
                 Text("DRAWTEST")
             }).padding()
             
             Button(action: {
-                playerCards = []
-                counter = 0
-                print(playerCards)
+                game.playerCards = []
+                game.counter = 0
+                print(game.playerCards)
             }, label: {
                 Text("Reset")
             })
             
+            .padding(.bottom, 50)
+            
             HStack {
-                ForEach(playerCards) { cards in
+                ForEach(game.enemyCards) { cards in
                     CardView(card: cards)
                 }
             }
+            
+            Text("Enemy Health: \(game.enemyHealth)").font(.title).padding(.bottom, 30)
+            Text("Player Health: \(game.playerHealth)").font(.title).padding(.bottom, 30)
+            
+            HStack {
+                ForEach(game.playerCards) { cards in
+                    CardView(card: cards)
+                }
+            }
+            
+            Button(action: {
+                print("\(game.playerCards[2])")
+            }, label: {
+                Text("PRINT")
+            })
+            
+            Button(action: {
+                
+            }, label: {
+                Text("Button")
+            })
         }
     }
 }
 
 #Preview {
-    GameView()
+    GameView().environmentObject(Game())
 }

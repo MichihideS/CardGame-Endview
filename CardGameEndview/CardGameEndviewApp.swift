@@ -9,9 +9,10 @@ import SwiftUI
 
 @main
 struct CardGameEndviewApp: App {
+    @StateObject var game = Game()
     var body: some Scene {
         WindowGroup {
-            StartView()
+            StartView().environmentObject(game)
         }
     }
 }
