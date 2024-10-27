@@ -39,12 +39,18 @@ struct GameView: View {
                 }
             }
             
-            Text("Enemy Health: \(game.enemyHealth)").font(.title).padding(.bottom, 30)
+            Text("Enemy Health: \(game.enemyHealth)").font(.title)
+            Text("Status: \(game.enemyStatus)").font(.title2).padding(.bottom, 30)
+            
+            Text("Statis: \(game.playerStatus)").font(.title2)
             Text("Player Health: \(game.playerHealth)").font(.title).padding(.bottom, 30)
             
-            HStack {
-                ForEach(game.playerCards) { cards in
-                    CardView(card: cards)
+            ScrollView(.horizontal) {
+                HStack {
+                    ForEach(game.playerCards) { cards in
+                        CardView(card: cards)
+                            
+                    }
                 }
             }
             

@@ -14,17 +14,31 @@ struct CardView: View {
     var body: some View {
         VStack {
             Button(action: {
-                game.chooseCard()
+                game.chooseCard(uuid: card.id)
             }, label: {
                 VStack {
-                    Text("\(card.name)")
-                    Text("\(card.attack)")
-                    Text("\(card.defense)")
+                    VStack {
+                        Text("\(card.name)")
+                            .bold()
+                        
+                        HStack {
+                            Text("ATK: \(card.attack)")
+                            Text("DEF: \(card.defense)")
+                        }
+                    }
+                    
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                    
                     Text("\(game.checkSpecialAttribute(element: card.special))")
                 }
+                .foregroundColor(.black)
+                .frame(width: 100, height: 150)
+                .padding(10)
+                .border(Color.black, width: 1)
             })
-
+            
         }
+        
     }
 }
 
