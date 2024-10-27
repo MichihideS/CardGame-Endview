@@ -14,7 +14,9 @@ struct CardView: View {
     var body: some View {
         VStack {
             Button(action: {
-                game.chooseCard(uuid: card.id)
+                if game.isCardPressed == false {
+                    game.checkIfCardIsPressed(uuid: card.id)
+                }
             }, label: {
                 VStack {
                     VStack {
