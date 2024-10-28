@@ -58,13 +58,15 @@ struct GameView: View {
                     }
                 }
             }.overlay {
+                if let usedCardEnemy = game.usedCardEnemy {
+                    CardViewEnemy(card: usedCardEnemy)
+                }
+                
                 if let index = game.indexOfCardPressed {
                     CardViewBig(card: game.playerCards[index])
                 }
                 
-                if let usedCardEnemy = game.usedCardEnemy {
-                    CardViewEnemy(card: usedCardEnemy)
-                }
+              
             }
         }
     }
