@@ -15,23 +15,11 @@ struct GameView: View {
             VStack {
                 VStack {
                     Button(action: {
-                        game.drawCards(player: 1)
-                        game.counter = 0
-                        game.drawCards(player: 2)
+                        game.drawCardsStart()
                         print(game.playerCards)
                     }, label: {
                         Text("DRAWTEST")
                     }).padding()
-                    
-                    Button(action: {
-                        game.playerCards = []
-                        game.counter = 0
-                        print(game.playerCards)
-                    }, label: {
-                        Text("Reset")
-                    })
-                    
-                    .padding(.bottom, 50)
                     
                     ScrollView(.horizontal) {
                         HStack {
@@ -56,6 +44,18 @@ struct GameView: View {
                             }
                         }
                     }
+                    
+                    Button(action: {
+                        game.endTurn()
+                    }, label: {
+                        Text("End Turn")
+                    })
+                    .font(.title2)
+                    .padding()
+                    .foregroundColor(.white)
+                    .background(.black)
+                    .clipShape(.buttonBorder)
+                    
                 }
             }.overlay {
                 if let usedCardEnemy = game.usedCardEnemy {

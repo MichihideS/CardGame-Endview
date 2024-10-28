@@ -23,7 +23,7 @@ class Game: ObservableObject {
     @Published var enemyStatus = "Normal"
     @Published var playerStatus = "Normal"
     @Published var isCardPressed = false
-    @Published var isEnemyTurn = false
+    @Published var whosTurn = 1
     @Published var indexOfCardPressed: Int? = nil
     
     @Published var usedCard: Card? = nil
@@ -34,25 +34,20 @@ class Game: ObservableObject {
     @Published var isEnemyDamaged = false
     
     // Randomizes which card are drawn by both the player and enemy when you start the game
-    func drawCards(player: Int) {
+    func drawCardsStart() {
         while counter < 6 {
-            let randomNumber = Int.random(in: 0...11)
+            var randomNumber = Int.random(in: 0...11)
+            playerCards.append(cardDeck.deckOfCards[randomNumber])
             
-            if player == 1 {
-                playerCards.append(cardDeck.deckOfCards[randomNumber])
-                counter += 1
-   
-            } else {
-                enemyCards.append(cardDeck.deckOfCards[randomNumber])
-                counter += 1
-                
-            }
+            randomNumber = Int.random(in: 0...11)
+            enemyCards.append(cardDeck.deckOfCards[randomNumber])
+            counter += 1
         }
     }
     
     // Checks whos turn it is so you know if you gonna attack or defend
     func checkWhosTurn() {
-        if isEnemyTurn {
+        if whosTurn == 2 {
             playerDefenseTurnCalculations()
         } else {
             playerTurnCalculations()
@@ -177,6 +172,9 @@ class Game: ObservableObject {
     // Puts all the attack cards in a new array and randoms a card which is used for attack and deleted in the
     // original array after
     func enemyTurn() {
+        whosTurn = 2
+        startTurn()
+        
         var attack: Int = 0
         
         for card in enemyCards {
@@ -197,7 +195,6 @@ class Game: ObservableObject {
             $0.id == enemyCardsAttack[attack].id
         }) else { return }
         
-        isEnemyTurn = true
         enemyCards.remove(at: index)
     }
     
@@ -220,15 +217,46 @@ class Game: ObservableObject {
         resetVariables()
     }
     
+    func playerDefenseTurnCalculationsNoCard() {
+        guard let usedCardEnemy = usedCardEnemy else { return }
+        
+        playerHealth = playerHealth - usedCardEnemy.attack
+        
+        resetVariables()
+    }
+    
     // Resets variables so the turns can repeat until someone reaches a winning condition
     func resetVariables() {
         usedCardEnemy = nil
         usedCard = nil
         enemyCardsDefense = []
         enemyCardsAttack = []
-        isEnemyTurn = false
+        whosTurn = 1
         enemyDefenseResponse = 0
         isPlayerDamaged = false
         isEnemyDamaged = false
+        startTurn()
+    }
+    
+    // Ends the turn and starts a new function depending on where you are in the game
+    func endTurn() {
+        let randomNumber = Int.random(in: 0...11)
+        playerCards.append(cardDeck.deckOfCards[randomNumber])
+        
+        if whosTurn == 1 {
+            enemyTurn()
+        } else {
+            playerDefenseTurnCalculationsNoCard()
+        }
+    }
+    
+    func startTurn() {
+        let randomNumber = Int.random(in: 0...11)
+        
+        if whosTurn == 1 {
+            playerCards.append(cardDeck.deckOfCards[randomNumber])
+        } else {
+            enemyCards.append(cardDeck.deckOfCards[randomNumber])
+        }
     }
 }
