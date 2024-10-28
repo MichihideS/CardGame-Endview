@@ -37,6 +37,7 @@ struct CardView: View {
                 .frame(width: 100, height: 150)
                 .padding(10)
                 .border(Color.black, width: 1)
+                .background(Color(card.color))
             })
             
         }
@@ -45,5 +46,5 @@ struct CardView: View {
 }
 
 #Preview {
-    CardView(card: Card(name: "Test", attack: 30, defense: 20, cost: 5, special: 3, image: "")).environmentObject(Game())
+    CardView(card: Card(name: "Test", attack: 30, defense: 20, cost: 5, special: 3, image: "", color: Color(.purple))).environmentObject(Game())
 }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9C89FF052CCECC5400686E49 /* CardViewBig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C89FF042CCECC5400686E49 /* CardViewBig.swift */; };
+		9C89FF072CCF9D2800686E49 /* CardViewEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C89FF062CCF9D2800686E49 /* CardViewEnemy.swift */; };
 		9CD413D22CC410810002629B /* CardGameEndviewApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD413D12CC410810002629B /* CardGameEndviewApp.swift */; };
 		9CD413D42CC410810002629B /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD413D32CC410810002629B /* StartView.swift */; };
 		9CD413D62CC410820002629B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CD413D52CC410820002629B /* Assets.xcassets */; };
@@ -43,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		9C89FF042CCECC5400686E49 /* CardViewBig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewBig.swift; sourceTree = "<group>"; };
+		9C89FF062CCF9D2800686E49 /* CardViewEnemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewEnemy.swift; sourceTree = "<group>"; };
 		9CD413CE2CC410810002629B /* CardGameEndview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardGameEndview.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CD413D12CC410810002629B /* CardGameEndviewApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGameEndviewApp.swift; sourceTree = "<group>"; };
 		9CD413D32CC410810002629B /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 			children = (
 				9CD414452CC654070002629B /* CardView.swift */,
 				9C89FF042CCECC5400686E49 /* CardViewBig.swift */,
+				9C89FF062CCF9D2800686E49 /* CardViewEnemy.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 				9CD413D22CC410810002629B /* CardGameEndviewApp.swift in Sources */,
 				9CD414032CC418370002629B /* GameView.swift in Sources */,
 				9CD414412CC5A8030002629B /* Game.swift in Sources */,
+				9C89FF072CCF9D2800686E49 /* CardViewEnemy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

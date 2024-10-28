@@ -33,10 +33,11 @@ struct CardViewBig: View {
             .frame(width: 200, height: 300)
             .padding(10)
             .border(Color.black, width: 1)
-            .background(.blue)
+            .background(Color(card.color))
+            
             
             Button(action: {
-                game.playerTurnCalculations()
+                game.checkWhosTurn()
             }, label: {
                 Text("Confirm")
                     .frame(width: 120)
@@ -67,5 +68,5 @@ struct CardViewBig: View {
 }
 
 #Preview {
-    CardViewBig(card: Card(name: "Test", attack: 30, defense: 20, cost: 5, special: 3, image: "")).environmentObject(Game())
+    CardViewBig(card: Card(name: "Test", attack: 30, defense: 20, cost: 5, special: 3, image: "", color: Color(.purple))).environmentObject(Game())
 }

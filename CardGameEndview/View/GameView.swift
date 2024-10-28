@@ -33,12 +33,15 @@ struct GameView: View {
                     
                     .padding(.bottom, 50)
                     
-                    HStack {
-                        ForEach(game.enemyCards) { cards in
-                            CardView(card: cards)
+                    ScrollView(.horizontal) {
+                        HStack {
+                            ForEach(game.enemyCards) { cards in
+                                CardView(card: cards)
+                            }
                         }
                     }
                     
+                    Text("Enemy Cards: \(game.enemyCards.count)")
                     Text("Enemy Health: \(game.enemyHealth)").font(.title)
                     Text("Status: \(game.enemyStatus)").font(.title2).padding(.bottom, 30)
                     
@@ -57,6 +60,10 @@ struct GameView: View {
             }.overlay {
                 if let index = game.indexOfCardPressed {
                     CardViewBig(card: game.playerCards[index])
+                }
+                
+                if let usedCardEnemy = game.usedCardEnemy {
+                    CardViewEnemy(card: usedCardEnemy)
                 }
             }
         }

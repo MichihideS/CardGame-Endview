@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct Card: Identifiable {
     var id = UUID()
@@ -15,4 +16,5 @@ struct Card: Identifiable {
     var cost: Int
     var special: Int
     var image: String
+    var color: Color
 }
