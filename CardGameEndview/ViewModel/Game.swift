@@ -246,7 +246,9 @@ class Game: ObservableObject {
     func playerDefenseTurnCalculationsNoCard() {
         guard let usedCardEnemy = usedCardEnemy else { return }
         
-        playerHealth = playerHealth - usedCardEnemy.attack
+        let enemyAttack = checkForStatusDrown(attack: usedCardEnemy.attack)
+        
+        playerHealth = playerHealth - enemyAttack
         
         if usedCardEnemy.special > 0 {
             checkSpecialAttackHit(special: usedCardEnemy.special)
@@ -377,7 +379,7 @@ class Game: ObservableObject {
             if attack > 0 {
                 attackModified = attack / 2
             }
-        } else if whosTurn == 1 {
+        } else if whosTurn == 2 {
             attackModified = attack
         }
         
