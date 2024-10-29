@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9C89FF052CCECC5400686E49 /* CardViewBig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C89FF042CCECC5400686E49 /* CardViewBig.swift */; };
-		9C89FF072CCF9D2800686E49 /* CardViewEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C89FF062CCF9D2800686E49 /* CardViewEnemy.swift */; };
+		9C89FF072CCF9D2800686E49 /* CardViewEnemyBig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C89FF062CCF9D2800686E49 /* CardViewEnemyBig.swift */; };
 		9CD413D22CC410810002629B /* CardGameEndviewApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD413D12CC410810002629B /* CardGameEndviewApp.swift */; };
 		9CD413D42CC410810002629B /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD413D32CC410810002629B /* StartView.swift */; };
 		9CD413D62CC410820002629B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CD413D52CC410820002629B /* Assets.xcassets */; };
@@ -23,6 +23,7 @@
 		9CD4143F2CC5A7760002629B /* CardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD4143E2CC5A7760002629B /* CardDeck.swift */; };
 		9CD414412CC5A8030002629B /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD414402CC5A8030002629B /* Game.swift */; };
 		9CD414462CC654070002629B /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD414452CC654070002629B /* CardView.swift */; };
+		9CDFAAEA2CD15BE500449625 /* CardViewEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDFAAE92CD15BE500449625 /* CardViewEnemy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,7 +45,7 @@
 
 /* Begin PBXFileReference section */
 		9C89FF042CCECC5400686E49 /* CardViewBig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewBig.swift; sourceTree = "<group>"; };
-		9C89FF062CCF9D2800686E49 /* CardViewEnemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewEnemy.swift; sourceTree = "<group>"; };
+		9C89FF062CCF9D2800686E49 /* CardViewEnemyBig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewEnemyBig.swift; sourceTree = "<group>"; };
 		9CD413CE2CC410810002629B /* CardGameEndview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardGameEndview.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CD413D12CC410810002629B /* CardGameEndviewApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGameEndviewApp.swift; sourceTree = "<group>"; };
 		9CD413D32CC410810002629B /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
@@ -62,6 +63,7 @@
 		9CD4143E2CC5A7760002629B /* CardDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDeck.swift; sourceTree = "<group>"; };
 		9CD414402CC5A8030002629B /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		9CD414452CC654070002629B /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		9CDFAAE92CD15BE500449625 /* CardViewEnemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewEnemy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,7 +183,8 @@
 			children = (
 				9CD414452CC654070002629B /* CardView.swift */,
 				9C89FF042CCECC5400686E49 /* CardViewBig.swift */,
-				9C89FF062CCF9D2800686E49 /* CardViewEnemy.swift */,
+				9CDFAAE92CD15BE500449625 /* CardViewEnemy.swift */,
+				9C89FF062CCF9D2800686E49 /* CardViewEnemyBig.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CD413D42CC410810002629B /* StartView.swift in Sources */,
+				9CDFAAEA2CD15BE500449625 /* CardViewEnemy.swift in Sources */,
 				9C89FF052CCECC5400686E49 /* CardViewBig.swift in Sources */,
 				9CD414052CC418540002629B /* LoggedInView.swift in Sources */,
 				9CD413FF2CC4119D0002629B /* Card.swift in Sources */,
@@ -326,7 +330,7 @@
 				9CD413D22CC410810002629B /* CardGameEndviewApp.swift in Sources */,
 				9CD414032CC418370002629B /* GameView.swift in Sources */,
 				9CD414412CC5A8030002629B /* Game.swift in Sources */,
-				9C89FF072CCF9D2800686E49 /* CardViewEnemy.swift in Sources */,
+				9C89FF072CCF9D2800686E49 /* CardViewEnemyBig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -24,7 +24,7 @@ struct GameView: View {
                     ScrollView(.horizontal) {
                         HStack {
                             ForEach(game.enemyCards) { cards in
-                                CardView(card: cards)
+                                CardViewEnemy(card: cards)
                             }
                         }
                     }
@@ -60,7 +60,7 @@ struct GameView: View {
                 }
             }.overlay {
                 if let usedCardEnemy = game.usedCardEnemy {
-                    CardViewEnemy(card: usedCardEnemy)
+                    CardViewEnemyBig(card: usedCardEnemy)
                 }
                 
                 if let index = game.indexOfCardPressed {

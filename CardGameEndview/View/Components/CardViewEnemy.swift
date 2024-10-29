@@ -1,8 +1,8 @@
 //
-//  CardViewBig.swift
+//  CardView.swift
 //  CardGameEndview
 //
-//  Created by Michihide Sugito on 2024-10-27.
+//  Created by Michihide Sugito on 2024-10-29.
 //
 
 import SwiftUI
@@ -13,30 +13,15 @@ struct CardViewEnemy: View {
     
     var body: some View {
         VStack {
-            VStack {
-                VStack {
-                    Text("\(card.name)")
-                        .font(.title2)
-                        .bold()
-                    
-                    HStack {
-                        Text("ATK: \(card.attack)")
-                        Text("DEF: \(card.defense)")
-                    }
-                }
-                
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-                
-                Text("\(game.checkSpecialAttribute(element: card.special))")
-            }
-            .foregroundColor(.black)
-            .frame(width: 140, height: 200)
-            .padding(10)
-            .border(Color.black, width: 1)
-            .background(Color(card.color))
+            
         }
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-            .padding()
+        .foregroundColor(.black)
+        .frame(width: 100, height: 150)
+        .padding(10)
+        .border(Color.black, width: 1)
+        
+        .background(Image("game_bg")
+            .resizable())
     }
 }
 

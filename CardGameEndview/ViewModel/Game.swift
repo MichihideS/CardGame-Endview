@@ -66,24 +66,26 @@ class Game: ObservableObject {
         
         guard let usedCard = usedCard else { return }
         
-        checkEnemyDefenseCards()
-        
-        let playerAttack = checkForStatusDrown(attack: usedCard.attack)
-        
-        if (playerAttack - enemyDefenseResponse) > 0  {
-            let enemyDefense = checkForStatusWind(defense: enemyDefenseResponse)
+        if usedCard.attack > 0 {
+            checkEnemyDefenseCards()
             
-            enemyHealth = enemyHealth - (playerAttack - enemyDefense)
+            let playerAttack = checkForStatusDrown(attack: usedCard.attack)
             
-            if usedCard.special > 0 {
-                checkSpecialAttackHit(special: usedCard.special)
+            if (playerAttack - enemyDefenseResponse) > 0  {
+                let enemyDefense = checkForStatusWind(defense: enemyDefenseResponse)
+                
+                enemyHealth = enemyHealth - (playerAttack - enemyDefense)
+                
+                if usedCard.special > 0 {
+                    checkSpecialAttackHit(special: usedCard.special)
+                }
             }
+            
+            playerCards.remove(at: index)
+            indexOfCardPressed = nil
+            isCardPressed = false
+            enemyTurn()
         }
-        
-        playerCards.remove(at: index)
-        indexOfCardPressed = nil
-        isCardPressed = false
-        enemyTurn()
     }
     
     // Checks if the card has a special attribute and returns a string depending on what special it has
@@ -106,6 +108,7 @@ class Game: ObservableObject {
         return specialText
     }
     
+    // When player attacks and lands a hit with a special modifier it will set the status of the player accordingly
     func checkSpecialAttackHit(special: Int) {
         switch special {
         case 1:
@@ -201,18 +204,19 @@ class Game: ObservableObject {
         }
         
         if enemyCardsAttack.isEmpty {
-            
+            startTurn()
+            resetVariables()
         } else {
             attack = Int.random(in: 0...enemyCardsAttack.count - 1)
             
             usedCardEnemy = enemyCardsAttack[attack]
+            
+            guard let index = enemyCards.firstIndex(where: {
+                $0.id == enemyCardsAttack[attack].id
+            }) else { return }
+            
+            enemyCards.remove(at: index)
         }
-        
-        guard let index = enemyCards.firstIndex(where: {
-            $0.id == enemyCardsAttack[attack].id
-        }) else { return }
-        
-        enemyCards.remove(at: index)
     }
     
     // Checks if enemy attack is bigger then player defense and if it is reduces the health accordinly
@@ -224,23 +228,25 @@ class Game: ObservableObject {
         guard let usedCard = usedCard else { return }
         guard let usedCardEnemy = usedCardEnemy else { return }
         
-        let enemyAttack = checkForStatusDrown(attack: usedCardEnemy.attack)
-        
-        if (enemyAttack - usedCard.defense) > 0  {
-            let playerDefense = checkForStatusWind(defense: usedCard.defense)
+        if usedCard.defense > 0 {
+            let enemyAttack = checkForStatusDrown(attack: usedCardEnemy.attack)
             
-            playerHealth = playerHealth - (enemyAttack - playerDefense)
-            
-            if usedCardEnemy.special > 0 {
-                checkSpecialAttackHit(special: usedCardEnemy.special)
+            if (enemyAttack - usedCard.defense) > 0  {
+                let playerDefense = checkForStatusWind(defense: usedCard.defense)
+                
+                playerHealth = playerHealth - (enemyAttack - playerDefense)
+                
+                if usedCardEnemy.special > 0 {
+                    checkSpecialAttackHit(special: usedCardEnemy.special)
+                }
             }
+            
+            playerCards.remove(at: index)
+            indexOfCardPressed = nil
+            isCardPressed = false
+            resetVariables()
+            checkWinner()
         }
-        
-        playerCards.remove(at: index)
-        indexOfCardPressed = nil
-        isCardPressed = false
-        resetVariables()
-        checkWinner()
     }
     
     func playerDefenseTurnCalculationsNoCard() {
