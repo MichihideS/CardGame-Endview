@@ -18,12 +18,14 @@ class Game: ObservableObject {
     @Published var enemyCardsDefense: [Card] = []
     @Published var enemyCardsAttack: [Card] = []
     
-    @Published var enemyHealth = 50
-    @Published var playerHealth = 50
+    @Published var enemyHealth = 10
+    @Published var playerHealth = 10
     @Published var enemyStatus = "Normal"
     @Published var playerStatus = "Normal"
     @Published var isCardPressed = false
     @Published var whosTurn = 1
+    @Published var whoWon: Int? = nil
+    @Published var whoWonText = ""
     @Published var indexOfCardPressed: Int? = nil
     
     @Published var usedCard: Card? = nil
@@ -172,6 +174,7 @@ class Game: ObservableObject {
     // Puts all the attack cards in a new array and randoms a card which is used for attack and deleted in the
     // original array after
     func enemyTurn() {
+        checkWinner()
         whosTurn = 2
         startTurn()
         
@@ -215,6 +218,7 @@ class Game: ObservableObject {
         indexOfCardPressed = nil
         isCardPressed = false
         resetVariables()
+        checkWinner()
     }
     
     func playerDefenseTurnCalculationsNoCard() {
@@ -223,6 +227,7 @@ class Game: ObservableObject {
         playerHealth = playerHealth - usedCardEnemy.attack
         
         resetVariables()
+        checkWinner()
     }
     
     // Resets variables so the turns can repeat until someone reaches a winning condition
@@ -238,6 +243,23 @@ class Game: ObservableObject {
         startTurn()
     }
     
+    // Resets the whole game and srarts it up again
+    func resetGame() {
+        counter = 0
+        playerCards = []
+        enemyCards = []
+        enemyHealth = 50
+        playerHealth = 50
+        enemyStatus = "Normal"
+        playerStatus = "Normal"
+        isCardPressed = false
+        whoWon = nil
+        whoWonText = ""
+        indexOfCardPressed = nil
+        resetVariables()
+        drawCardsStart()
+    }
+    
     // Ends the turn and starts a new function depending on where you are in the game
     func endTurn() {
         let randomNumber = Int.random(in: 0...11)
@@ -250,6 +272,8 @@ class Game: ObservableObject {
         }
     }
     
+    
+    // Adds a new card at the start of every players turn
     func startTurn() {
         let randomNumber = Int.random(in: 0...11)
         
@@ -257,6 +281,16 @@ class Game: ObservableObject {
             playerCards.append(cardDeck.deckOfCards[randomNumber])
         } else {
             enemyCards.append(cardDeck.deckOfCards[randomNumber])
+        }
+    }
+    
+    func checkWinner() {
+        if enemyHealth <= 0 {
+            whoWon = 1
+            whoWonText = "You Won!"
+        } else if playerHealth <= 0{
+            whoWon = 2
+            whoWonText = "You Lose!"
         }
     }
 }

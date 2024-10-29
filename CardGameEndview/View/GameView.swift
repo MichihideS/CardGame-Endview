@@ -66,7 +66,25 @@ struct GameView: View {
                     CardViewBig(card: game.playerCards[index])
                 }
                 
-              
+                VStack {
+                    if let _ = game.whoWon {
+                        Button(action: {
+                            game.resetGame()
+                        }, label: {
+                            Text("Play Again?")
+                                
+                        })
+                        .font(.title2)
+                        .padding()
+                        .foregroundStyle(.black)
+                        .background(.white)
+                        .clipShape(.buttonBorder)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        
+                        .background(Color.black.ignoresSafeArea())
+                        .edgesIgnoringSafeArea(.all)
+                    }
+                }
             }
         }
     }
