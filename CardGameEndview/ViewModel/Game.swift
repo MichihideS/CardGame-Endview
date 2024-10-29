@@ -32,6 +32,12 @@ class Game: ObservableObject {
     @Published var enemyDefenseResponse: Int = 0
     @Published var usedCardEnemy: Card? = nil
     
+    let BURN = "Burned"
+    let DROWN = "Drowned"
+    let DEATH = "Death"
+    let WIND = "Windy"
+    let NORMAL = "Normal"
+    
     // Randomizes which card are drawn by both the player and enemy when you start the game
     func drawCardsStart() {
         while counter < 6 {
@@ -62,8 +68,12 @@ class Game: ObservableObject {
         
         checkEnemyDefenseCards()
         
-        if (usedCard.attack - enemyDefenseResponse) > 0  {
-            enemyHealth = enemyHealth - (usedCard.attack - enemyDefenseResponse)
+        let playerAttack = checkForStatusDrown(attack: usedCard.attack)
+        
+        if (playerAttack - enemyDefenseResponse) > 0  {
+            let enemyDefense = checkForStatusWind(defense: enemyDefenseResponse)
+            
+            enemyHealth = enemyHealth - (playerAttack - enemyDefense)
             
             if usedCard.special > 0 {
                 checkSpecialAttackHit(special: usedCard.special)
@@ -100,27 +110,27 @@ class Game: ObservableObject {
         switch special {
         case 1:
             if whosTurn == 1 {
-                enemyStatus = "Burned"
+                enemyStatus = BURN
             } else {
-                playerStatus = "Burned"
+                playerStatus = BURN
             }
         case 2:
             if whosTurn == 1 {
-                enemyStatus = "Drowned"
+                enemyStatus = DROWN
             } else {
-                playerStatus = "Drowned"
+                playerStatus = DROWN
             }
         case 3:
             if whosTurn == 1 {
-                enemyStatus = "Death"
+                enemyStatus = DEATH
             } else {
-                playerStatus = "Death"
+                playerStatus = DEATH
             }
         case 4:
             if whosTurn == 1 {
-                enemyStatus = "Windy"
+                enemyStatus = WIND
             } else {
-                playerStatus = "Windy"
+                playerStatus = WIND
             }
         default:
             return
@@ -163,11 +173,7 @@ class Game: ObservableObject {
     // Checks which defense card to use if enemy has any and sets a new value to the card and checks if enemy takes damage
     func enemyDefenseTurn() {
         let defense = Int.random(in: 0...enemyCardsDefense.count - 1)
-        
-        guard let usedCard = usedCard else { return }
-        
-        let healthDifference = enemyCardsDefense[defense].defense - usedCard.attack
-        
+    
         enemyDefenseResponse = enemyCardsDefense[defense].defense
         
         guard let index = enemyCards.firstIndex(where: {
@@ -182,6 +188,8 @@ class Game: ObservableObject {
     func enemyTurn() {
         checkWinner()
         whosTurn = 2
+        checkForStatusBurned()
+        checkForStatusDeath()
         startTurn()
         
         var attack: Int = 0
@@ -216,8 +224,12 @@ class Game: ObservableObject {
         guard let usedCard = usedCard else { return }
         guard let usedCardEnemy = usedCardEnemy else { return }
         
-        if (usedCardEnemy.attack - usedCard.defense) > 0  {
-            playerHealth = playerHealth - (usedCardEnemy.attack - usedCard.defense)
+        let enemyAttack = checkForStatusDrown(attack: usedCardEnemy.attack)
+        
+        if (enemyAttack - usedCard.defense) > 0  {
+            let playerDefense = checkForStatusWind(defense: usedCard.defense)
+            
+            playerHealth = playerHealth - (enemyAttack - playerDefense)
             
             if usedCardEnemy.special > 0 {
                 checkSpecialAttackHit(special: usedCardEnemy.special)
@@ -252,6 +264,8 @@ class Game: ObservableObject {
         enemyCardsAttack = []
         whosTurn = 1
         enemyDefenseResponse = 0
+        checkForStatusBurned()
+        checkForStatusDeath()
         startTurn()
     }
     
@@ -262,8 +276,8 @@ class Game: ObservableObject {
         enemyCards = []
         enemyHealth = 50
         playerHealth = 50
-        enemyStatus = "Normal"
-        playerStatus = "Normal"
+        enemyStatus = NORMAL
+        playerStatus = NORMAL
         isCardPressed = false
         whoWon = nil
         whoWonText = ""
@@ -305,5 +319,76 @@ class Game: ObservableObject {
             whoWon = 2
             whoWonText = "You Lose!"
         }
+    }
+    
+    // Checks if player has the status burned at the start of their turn and if they have reduces health by 5
+    func checkForStatusBurned() {
+        if whosTurn == 2 && enemyStatus == BURN {
+            enemyHealth = enemyHealth - 5
+            checkWinner()
+        }
+        
+        if whosTurn == 1 && playerStatus == BURN {
+            playerHealth = playerHealth - 5
+            checkWinner()
+        }
+    }
+    
+    // Check if player has the status death at the start of their turn and if they do they automatically lose
+    func checkForStatusDeath() {
+        if whosTurn == 2 && enemyStatus == DEATH {
+            enemyHealth = 0
+            checkWinner()
+        }
+        
+        if whosTurn == 1 && playerStatus == DEATH {
+            playerHealth = 0
+            checkWinner()
+        }
+    }
+    
+    // Check if player has the status windy when they block an attack and if they do the defense value will be halved
+    func checkForStatusWind(defense: Int) -> Int {
+        var defenseModified = 0
+        if whosTurn == 1 && enemyStatus == WIND {
+            if defense > 0 {
+                defenseModified = defense / 2
+            }
+        } else if whosTurn == 1 {
+            defenseModified = defense
+        }
+        
+        if whosTurn == 2 && playerStatus == WIND {
+            if defense > 0 {
+                defenseModified = defense / 2
+            }
+        } else if whosTurn == 2 {
+            defenseModified = defense
+        }
+    
+        return defenseModified
+    }
+    
+    // Check if player has the status drown when they attack and if they do the attack value will be halved
+    func checkForStatusDrown(attack: Int) -> Int {
+        var attackModified = 0
+        
+        if whosTurn == 2 && enemyStatus == DROWN {
+            if attack > 0 {
+                attackModified = attack / 2
+            }
+        } else if whosTurn == 1 {
+            attackModified = attack
+        }
+        
+        if whosTurn == 1 && playerStatus == DROWN {
+            if attack > 0 {
+                attackModified = attack / 2
+            }
+        } else if whosTurn == 1 {
+            attackModified = attack
+        }
+        
+        return attackModified
     }
 }

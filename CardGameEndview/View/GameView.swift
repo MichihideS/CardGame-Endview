@@ -33,7 +33,7 @@ struct GameView: View {
                     Text("Enemy Health: \(game.enemyHealth)").font(.title)
                     Text("Status: \(game.enemyStatus)").font(.title2).padding(.bottom, 30)
                     
-                    Text("Statis: \(game.playerStatus)").font(.title2)
+                    Text("Status: \(game.playerStatus)").font(.title2)
                     Text("Player Health: \(game.playerHealth)").font(.title).padding(.bottom, 30)
                     
                     ScrollView(.horizontal) {
