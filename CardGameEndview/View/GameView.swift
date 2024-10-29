@@ -29,12 +29,12 @@ struct GameView: View {
                         }
                     }
                     
-                    Text("Enemy Cards: \(game.enemyCards.count)")
-                    Text("Enemy Health: \(game.enemyHealth)").font(.title)
-                    Text("Status: \(game.enemyStatus)").font(.title2).padding(.bottom, 30)
+                    Text("Enemy Cards: \(game.enemyCards.count)").padding(5).background(.thinMaterial.opacity(0.6))
+                    Text("Enemy Health: \(game.enemyHealth)").font(.title).padding(5).background(.thinMaterial.opacity(0.6))
+                    Text("Status: \(game.enemyStatus)").font(.title2).padding(5).background(.thinMaterial.opacity(0.6)).padding(.bottom, 30)
                     
-                    Text("Status: \(game.playerStatus)").font(.title2)
-                    Text("Player Health: \(game.playerHealth)").font(.title).padding(.bottom, 30)
+                    Text("Status: \(game.playerStatus)").font(.title2).padding(5).background(.thinMaterial.opacity(0.6))
+                    Text("Player Health: \(game.playerHealth)").font(.title).padding(5).background(.thinMaterial.opacity(0.6)).padding(.bottom, 30)
                     
                     ScrollView(.horizontal) {
                         HStack {
