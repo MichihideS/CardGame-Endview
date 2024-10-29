@@ -40,7 +40,6 @@ struct GameView: View {
                         HStack {
                             ForEach(game.playerCards) { cards in
                                 CardView(card: cards)
-                                
                             }
                         }
                     }
@@ -52,10 +51,12 @@ struct GameView: View {
                     })
                     .font(.title2)
                     .padding()
-                    .foregroundColor(.white)
-                    .background(.black)
-                    .clipShape(.buttonBorder)
-                    
+                    .foregroundColor(.black)
+                    .background {
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(.thinMaterial)
+                            .stroke(.black, lineWidth: 2)
+                    }
                 }
             }.overlay {
                 if let usedCardEnemy = game.usedCardEnemy {
@@ -65,26 +66,30 @@ struct GameView: View {
                 if let index = game.indexOfCardPressed {
                     CardViewBig(card: game.playerCards[index])
                 }
-                
+            }
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Image("game_bg").opacity(0.8))
+        .overlay {
+            if let _ = game.whoWon {
                 VStack {
-                    if let _ = game.whoWon {
-                        Button(action: {
-                            game.resetGame()
-                        }, label: {
-                            Text("Play Again?")
-                                
-                        })
-                        .font(.title2)
-                        .padding()
-                        .foregroundStyle(.black)
-                        .background(.white)
-                        .clipShape(.buttonBorder)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    Text(game.whoWonText)
+                    
+                    Button(action: {
+                        game.resetGame()
+                    }, label: {
+                        Text("Play Again")
                         
-                        .background(Color.black.ignoresSafeArea())
-                        .edgesIgnoringSafeArea(.all)
-                    }
+                    })
+                    .font(.title2)
+                    .padding()
+                    .foregroundStyle(.white)
+                    .background(.black)
+                    .clipShape(.buttonBorder)
+                    
                 }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(.thinMaterial).ignoresSafeArea()
             }
         }
     }

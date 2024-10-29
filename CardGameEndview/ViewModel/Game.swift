@@ -18,8 +18,8 @@ class Game: ObservableObject {
     @Published var enemyCardsDefense: [Card] = []
     @Published var enemyCardsAttack: [Card] = []
     
-    @Published var enemyHealth = 10
-    @Published var playerHealth = 10
+    @Published var enemyHealth = 50
+    @Published var playerHealth = 50
     @Published var enemyStatus = "Normal"
     @Published var playerStatus = "Normal"
     @Published var isCardPressed = false
@@ -31,9 +31,6 @@ class Game: ObservableObject {
     @Published var usedCard: Card? = nil
     @Published var enemyDefenseResponse: Int = 0
     @Published var usedCardEnemy: Card? = nil
-    
-    @Published var isPlayerDamaged = false
-    @Published var isEnemyDamaged = false
     
     // Randomizes which card are drawn by both the player and enemy when you start the game
     func drawCardsStart() {
@@ -65,29 +62,12 @@ class Game: ObservableObject {
         
         checkEnemyDefenseCards()
         
-        switch usedCard.special {
-        case 1:
-            if isEnemyDamaged {
-                enemyStatus = "Burned"
-            }
-        case 2:
-            if isEnemyDamaged {
-                enemyStatus = "Drowned"
-            }
-        case 3:
-            if isEnemyDamaged {
-                enemyStatus = "Death"
-            }
-        case 4:
-            if isEnemyDamaged {
-                enemyStatus = "Windy"
-            }
-        default:
-            enemyStatus = enemyStatus
-        }
-        
         if (usedCard.attack - enemyDefenseResponse) > 0  {
             enemyHealth = enemyHealth - (usedCard.attack - enemyDefenseResponse)
+            
+            if usedCard.special > 0 {
+                checkSpecialAttackHit(special: usedCard.special)
+            }
         }
         
         playerCards.remove(at: index)
@@ -114,6 +94,37 @@ class Game: ObservableObject {
         }
         
         return specialText
+    }
+    
+    func checkSpecialAttackHit(special: Int) {
+        switch special {
+        case 1:
+            if whosTurn == 1 {
+                enemyStatus = "Burned"
+            } else {
+                playerStatus = "Burned"
+            }
+        case 2:
+            if whosTurn == 1 {
+                enemyStatus = "Drowned"
+            } else {
+                playerStatus = "Drowned"
+            }
+        case 3:
+            if whosTurn == 1 {
+                enemyStatus = "Death"
+            } else {
+                playerStatus = "Death"
+            }
+        case 4:
+            if whosTurn == 1 {
+                enemyStatus = "Windy"
+            } else {
+                playerStatus = "Windy"
+            }
+        default:
+            return
+        }
     }
     
     // Checks the ID of the card you pressed so you can find the index of where it is at
@@ -144,7 +155,6 @@ class Game: ObservableObject {
         
         if enemyCardsDefense.isEmpty {
             enemyDefenseResponse = 0
-            isEnemyDamaged = true
         } else {
             enemyDefenseTurn()
         }
@@ -157,10 +167,6 @@ class Game: ObservableObject {
         guard let usedCard = usedCard else { return }
         
         let healthDifference = enemyCardsDefense[defense].defense - usedCard.attack
-        
-        if healthDifference < 0 {
-            isEnemyDamaged = true
-        }
         
         enemyDefenseResponse = enemyCardsDefense[defense].defense
         
@@ -212,6 +218,10 @@ class Game: ObservableObject {
         
         if (usedCardEnemy.attack - usedCard.defense) > 0  {
             playerHealth = playerHealth - (usedCardEnemy.attack - usedCard.defense)
+            
+            if usedCardEnemy.special > 0 {
+                checkSpecialAttackHit(special: usedCardEnemy.special)
+            }
         }
         
         playerCards.remove(at: index)
@@ -226,6 +236,10 @@ class Game: ObservableObject {
         
         playerHealth = playerHealth - usedCardEnemy.attack
         
+        if usedCardEnemy.special > 0 {
+            checkSpecialAttackHit(special: usedCardEnemy.special)
+        }
+        
         resetVariables()
         checkWinner()
     }
@@ -238,8 +252,6 @@ class Game: ObservableObject {
         enemyCardsAttack = []
         whosTurn = 1
         enemyDefenseResponse = 0
-        isPlayerDamaged = false
-        isEnemyDamaged = false
         startTurn()
     }
     
@@ -284,6 +296,7 @@ class Game: ObservableObject {
         }
     }
     
+    // Checks if anyone has reached the winning condition and ends the game if someone has
     func checkWinner() {
         if enemyHealth <= 0 {
             whoWon = 1
