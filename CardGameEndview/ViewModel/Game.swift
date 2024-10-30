@@ -399,4 +399,20 @@ class Game: ObservableObject {
         
         return attackModified
     }
+    
+    // Checks the win percentage of the player
+    func winRatio(wins: Int, losses: Int) -> Int {
+        let winsDouble = Double(wins)
+        let totalGamesDouble = Double(wins + losses)
+        
+        var ratio = winsDouble / totalGamesDouble * 100
+        
+        if totalGamesDouble == 0 {
+            ratio = 0
+        }
+        
+        let rounded = ceil(ratio)
+        return Int(rounded)
+    }
 }
+
