@@ -47,6 +47,19 @@ struct LoginView: View {
                     .background(.black)
                     .clipShape(.buttonBorder)
             }
+            
+            // REMOVE LATER
+            Button(action: {
+                print(db.currentPlayerData?.name)
+            }, label: {
+                Text("CHECK USER VALUE")
+                    .bold()
+                    .padding()
+                    .font(.title)
+                    .foregroundStyle(.white)
+                    .background(.black)
+                    .clipShape(.buttonBorder)
+            })
         }
     }
 }

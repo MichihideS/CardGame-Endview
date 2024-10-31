@@ -8,6 +8,7 @@
 import Foundation
 
 class Game: ObservableObject {
+    var db = DbConnection()
     var cardDeck = CardDeck()
     
     @Published var text: String = "Test"
@@ -321,9 +322,11 @@ class Game: ObservableObject {
     // Checks if anyone has reached the winning condition and ends the game if someone has
     func checkWinner() {
         if enemyHealth <= 0 {
+            db.plusOne()
             whoWon = 1
             whoWonText = "You Won!"
         } else if playerHealth <= 0{
+            db.minusOne()
             whoWon = 2
             whoWonText = "You Lose!"
         }

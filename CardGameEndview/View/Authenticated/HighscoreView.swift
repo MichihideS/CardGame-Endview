@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HighscoreView: View {
     @EnvironmentObject var db: DbConnection
+    @EnvironmentObject var game: Game
     
     var body: some View {
         VStack {
@@ -16,12 +17,12 @@ struct HighscoreView: View {
                 Text("Player List:")
                     .font(.title)
                 
-                ForEach(db.players) { player in
+                // Sorts the highscore list by win% with the help of a winratio function
+                ForEach(db.players.sorted(by: { game.winRatio(wins: $0.wins, losses: $0.losses) > game.winRatio(wins: $1.wins, losses: $1.losses)})) { player in
                     PlayerCard(playerData: player)}
             }
         }
     }
-    
 }
 
 #Preview {
