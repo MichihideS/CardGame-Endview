@@ -11,6 +11,8 @@ class Game: ObservableObject {
     var db = DbConnection()
     var cardDeck = CardDeck()
     
+    @Published var isComputer: Bool = false
+    
     @Published var text: String = "Test"
     @Published var counter: Int = 0
     
@@ -39,19 +41,59 @@ class Game: ObservableObject {
     let WIND = "Windy"
     let NORMAL = "Normal"
     
-    // Randomizes which card are drawn by both the player and enemy when you start the game
+    // Randomizes which card are drawn by both the player and enemy when you start the game.
     func drawCardsStart() {
-        while counter < 6 {
-            var randomNumber = Int.random(in: 0...11)
-            playerCards.append(cardDeck.deckOfCards[randomNumber])
+        var playerCounter = 0
+        var enemyCounter = 0
+        
+        while playerCounter < 6 {
+            let randomNumber = Int.random(in: 0...11)
+            var isDupe = false
             
-            randomNumber = Int.random(in: 0...11)
-            enemyCards.append(cardDeck.deckOfCards[randomNumber])
-            counter += 1
+            if playerCards.isEmpty {
+                playerCards.append(cardDeck.deckOfCards[randomNumber])
+                playerCounter += 1
+            } else {
+                for card in playerCards {
+                    if card.id == cardDeck.deckOfCards[randomNumber].id {
+                        print("Found Dupe!")
+                        isDupe = true
+                        break
+                    }
+                }
+                
+                if !isDupe {
+                    playerCards.append(cardDeck.deckOfCards[randomNumber])
+                    playerCounter += 1
+                }
+            }
+        }
+        
+        while enemyCounter < 6 {
+            let randomNumber = Int.random(in: 0...19)
+            var isDupe = false
+            
+            if enemyCards.isEmpty {
+                enemyCards.append(cardDeck.deckOfCards[randomNumber])
+                enemyCounter += 1
+            } else {
+                for card in enemyCards {
+                    if card.id == cardDeck.deckOfCards[randomNumber].id {
+                     print("Found Dupe!")
+                        isDupe = true
+                        break
+                    }
+                }
+                
+                if !isDupe {
+                    enemyCards.append(cardDeck.deckOfCards[randomNumber])
+                    enemyCounter += 1
+                }
+            }
         }
     }
     
-    // Checks whos turn it is so you know if you gonna attack or defend
+    // Checks whos turn it is so you the program knows if you are attacking or defending.
     func checkWhosTurn() {
         if whosTurn == 2 {
             playerDefenseTurnCalculations()
@@ -89,7 +131,7 @@ class Game: ObservableObject {
         }
     }
     
-    // Checks if the card has a special attribute and returns a string depending on what special it has
+    // Checks if the card has a special attribute and returns a string depending on what special it has.
     func checkSpecialAttribute(element: Int) -> String {
         var specialText = ""
         
@@ -109,7 +151,7 @@ class Game: ObservableObject {
         return specialText
     }
     
-    // When player attacks and lands a hit with a special modifier it will set the status of the player accordingly
+    // When a player attacks and lands a hit with a special modifier it will set the status of the player accordingly.
     func checkSpecialAttackHit(special: Int) {
         switch special {
         case 1:
@@ -141,7 +183,7 @@ class Game: ObservableObject {
         }
     }
     
-    // Checks the ID of the card you pressed so you can find the index of where it is at
+    // Checks the ID of the card you pressed so you can find the index of where the card is.
     func checkIfCardIsPressed(uuid: UUID) {
         let index = playerCards.firstIndex(where: {
             $0.id == uuid
@@ -153,13 +195,16 @@ class Game: ObservableObject {
         isCardPressed = true
     }
     
-    // Resets variables if you cancel the card you pressed
+    // Resets the index and press card variables if you cancel the card you pressed.
     func cancelBigCard() {
         indexOfCardPressed = nil
         isCardPressed = false
     }
     
-    // Checks if the enemy has any defense cards and places them in a new array
+    /*
+     * Checks if the enemy has any defense cards and places them in a new array and
+     * if the array is empty enemy defense is set to 0.
+     */
     func checkEnemyDefenseCards() {
         for card in enemyCards {
             if card.defense > 0 {
@@ -169,12 +214,16 @@ class Game: ObservableObject {
         
         if enemyCardsDefense.isEmpty {
             enemyDefenseResponse = 0
+            drawOneCard(whoDraws: 2)
         } else {
             enemyDefenseTurn()
         }
     }
     
-    // Checks which defense card to use if enemy has any and sets a new value to the card and checks if enemy takes damage
+    /*
+     * Checks which defense card to use if enemy has any in the array and sets a new
+     * value to the card and, the defense card is randomized based on the new array created.
+     */
     func enemyDefenseTurn() {
         let defense = Int.random(in: 0...enemyCardsDefense.count - 1)
     
@@ -194,7 +243,7 @@ class Game: ObservableObject {
         whosTurn = 2
         checkForStatusBurned()
         checkForStatusDeath()
-        startTurn()
+        drawOneCard(whoDraws: 2)
         
         var attack: Int = 0
         
@@ -205,7 +254,7 @@ class Game: ObservableObject {
         }
         
         if enemyCardsAttack.isEmpty {
-            startTurn()
+            drawOneCard(whoDraws: 2)
             resetVariables()
         } else {
             attack = Int.random(in: 0...enemyCardsAttack.count - 1)
@@ -275,7 +324,6 @@ class Game: ObservableObject {
         enemyDefenseResponse = 0
         checkForStatusBurned()
         checkForStatusDeath()
-        startTurn()
     }
     
     // Resets the whole game and srarts it up again
@@ -297,8 +345,7 @@ class Game: ObservableObject {
     
     // Ends the turn and starts a new function depending on where you are in the game
     func endTurn() {
-        let randomNumber = Int.random(in: 0...11)
-        playerCards.append(cardDeck.deckOfCards[randomNumber])
+        drawOneCard(whoDraws: 1)
         
         if whosTurn == 1 {
             enemyTurn()
@@ -310,12 +357,10 @@ class Game: ObservableObject {
     
     // Adds a new card at the start of every players turn
     func startTurn() {
-        let randomNumber = Int.random(in: 0...11)
-        
         if whosTurn == 1 {
-            playerCards.append(cardDeck.deckOfCards[randomNumber])
+            drawOneCard(whoDraws: 1)
         } else {
-            enemyCards.append(cardDeck.deckOfCards[randomNumber])
+            drawOneCard(whoDraws: 2)
         }
     }
     
@@ -416,6 +461,63 @@ class Game: ObservableObject {
         
         let rounded = ceil(ratio)
         return Int(rounded)
+    }
+    
+    // Draw one card for End turn or start turn (CAN BE OPTIMIZED)
+    func drawOneCard(whoDraws: Int) {
+        if whoDraws == 1 {
+            var playerCounter = 0
+            
+            while playerCounter < 1 {
+                let randomNumber = Int.random(in: 0...19)
+                var isDupe = false
+                
+                if playerCards.isEmpty {
+                    playerCards.append(cardDeck.deckOfCards[randomNumber])
+                    playerCounter += 1
+                } else {
+                    for card in playerCards {
+                        if card.id == cardDeck.deckOfCards[randomNumber].id {
+                            print("Found Dupe!")
+                            isDupe = true
+                            break
+                        }
+                    }
+                    
+                    if !isDupe {
+                        playerCards.append(cardDeck.deckOfCards[randomNumber])
+                        playerCounter += 1
+                    }
+                }
+            }
+        }
+        
+        if whoDraws == 2 {
+            var enemyCounter = 0
+            
+            while enemyCounter < 1 {
+                let randomNumber = Int.random(in: 0...19)
+                var isDupe = false
+                
+                if enemyCards.isEmpty {
+                    enemyCards.append(cardDeck.deckOfCards[randomNumber])
+                    enemyCounter += 1
+                } else {
+                    for card in enemyCards {
+                        if card.id == cardDeck.deckOfCards[randomNumber].id {
+                            print("Found Dupe!")
+                            isDupe = true
+                            break
+                        }
+                    }
+                    
+                    if !isDupe {
+                        enemyCards.append(cardDeck.deckOfCards[randomNumber])
+                        enemyCounter += 1
+                    }
+                }
+            }
+        }
     }
 }
 
