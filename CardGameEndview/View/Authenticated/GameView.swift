@@ -22,7 +22,7 @@ struct GameView: View {
                             // TODO
                         }, text: "Play Online")
                         ButtonMainMenu(function: {
-                            game.drawCardsStart()
+                            game.resetGame()
                             startGame = true
                         }, text: "Vs Computer")
                     }
@@ -36,13 +36,52 @@ struct GameView: View {
                                 }
                             }
                         }
+            
+                        Text("Enemy Health: \(game.enemyHealth)")
+                            .font(.title)
+                            .padding(10)
+                            .background {
+                                RoundedRectangle(cornerRadius: 5)
+                                    .fill(.red.opacity(0.6))
+                                    .stroke(.black, lineWidth: 3)
+                                    .opacity(0.8)
+                            }
+                            .frame(width: 300, alignment: .trailing)
+                            .padding(.top, 10)
                         
-                        Text("Enemy Cards: \(game.enemyCards.count)").padding(5).background(.thinMaterial.opacity(0.6))
-                        Text("Enemy Health: \(game.enemyHealth)").font(.title).padding(5).background(.thinMaterial.opacity(0.6))
-                        Text("Status: \(game.enemyStatus)").font(.title2).padding(5).background(.thinMaterial.opacity(0.6)).padding(.bottom, 30)
+                        Text("Status: \(game.enemyStatus)")
+                            .font(.title2).padding(5)
+                            .background {
+                                RoundedRectangle(cornerRadius: 5)
+                                    .fill(game.enemyStatusColor.opacity(0.6))
+                                    .stroke(.black, lineWidth: 1)
+                                    .opacity(0.8)
+                            }
+                            .padding(.bottom, 30)
+                            .frame(width: 300, alignment: .trailing)
                         
-                        Text("Status: \(game.playerStatus)").font(.title2).padding(5).background(.thinMaterial.opacity(0.6))
-                        Text("Player Health: \(game.playerHealth)").font(.title).padding(5).background(.thinMaterial.opacity(0.6)).padding(.bottom, 30)
+                        Text("Status: \(game.playerStatus)")
+                            .font(.title2)
+                            .padding(5)
+                            .background {
+                                RoundedRectangle(cornerRadius: 5)
+                                    .fill(game.playerStatusColor.opacity(0.6))
+                                    .stroke(.black, lineWidth: 1)
+                                    .opacity(0.8)
+                            }
+                            .frame(width: 300, alignment: .leading)
+                        
+                        Text("Player Health: \(game.playerHealth)")
+                            .font(.title)
+                            .padding(10)
+                            .background {
+                                RoundedRectangle(cornerRadius: 5)
+                                    .fill(.green.opacity(0.6))
+                                    .stroke(.black, lineWidth: 3)
+                                    .opacity(0.8)
+                            }
+                            .frame(width: 300, alignment: .leading)
+                            .padding(.bottom, 10)
                         
                         ScrollView(.horizontal) {
                             HStack {
@@ -58,17 +97,17 @@ struct GameView: View {
                     }, text: "End Turn")
                     .disabled(game.isCardPressed)
                 }
-            }.overlay {
-                if let usedCardEnemy = game.usedCardEnemy {
-                    CardViewEnemyBig(card: usedCardEnemy)
-                }
-                
-                if let index = game.indexOfCardPressed {
-                    CardViewBig(card: game.playerCards[index])
-                }
             }
         }
         .overlay {
+            if let usedCardEnemy = game.usedCardEnemy {
+                CardViewEnemyBig(card: usedCardEnemy)
+            }
+            
+            if let index = game.indexOfCardPressed {
+                CardViewBig(card: game.playerCards[index])
+            }
+            
             if let _ = game.whoWon {
                 VStack {
                     MainTextTitle(text: game.whoWonText)
@@ -77,12 +116,17 @@ struct GameView: View {
                         game.resetGame()
                     }, text: "Play Again")
                     
+                    NavigationButton(destination: LoggedInView(), text: "Main Menu")
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(.thinMaterial).ignoresSafeArea(.all)
+                .background(.thinMaterial).ignoresSafeArea()
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .onAppear {
+            startGame = false
+            game.resetGame()
+        }
     }
 }
 

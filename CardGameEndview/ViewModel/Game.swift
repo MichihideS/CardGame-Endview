@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class Game: ObservableObject {
     var db = DbConnection()
@@ -23,8 +24,12 @@ class Game: ObservableObject {
     
     @Published var enemyHealth = 50
     @Published var playerHealth = 50
+    
     @Published var enemyStatus = "Normal"
     @Published var playerStatus = "Normal"
+    @Published var enemyStatusColor = Color(.white)
+    @Published var playerStatusColor = Color(.white)
+    
     @Published var isCardPressed = false
     @Published var whosTurn = 1
     @Published var whoWon: Int? = nil
@@ -157,29 +162,37 @@ class Game: ObservableObject {
         case 1:
             if whosTurn == 1 {
                 enemyStatus = BURN
+                enemyStatusColor = Color(.red)
             } else {
                 playerStatus = BURN
+                playerStatusColor = Color(.red)
             }
         case 2:
             if whosTurn == 1 {
                 enemyStatus = DROWN
+                enemyStatusColor = Color(.blue)
             } else {
                 playerStatus = DROWN
+                playerStatusColor = Color(.blue)
             }
         case 3:
             if whosTurn == 1 {
                 enemyStatus = DEATH
+                enemyStatusColor = Color(.purple)
             } else {
                 playerStatus = DEATH
+                playerStatusColor = Color(.purple)
             }
         case 4:
             if whosTurn == 1 {
                 enemyStatus = WIND
+                enemyStatusColor = Color(.green)
             } else {
                 playerStatus = WIND
+                playerStatusColor = Color(.green)
             }
         default:
-            return
+            break
         }
     }
     
@@ -339,6 +352,8 @@ class Game: ObservableObject {
         whoWon = nil
         whoWonText = ""
         indexOfCardPressed = nil
+        enemyStatusColor = Color(.white)
+        playerStatusColor = Color(.white)
         resetVariables()
         drawCardsStart()
     }
@@ -424,6 +439,7 @@ class Game: ObservableObject {
     
         return defenseModified
     }
+    
     
     // Check if player has the status drown when they attack and if they do the attack value will be halved
     func checkForStatusDrown(attack: Int) -> Int {

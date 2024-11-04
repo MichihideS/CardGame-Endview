@@ -20,7 +20,8 @@ struct Background: View {
             .padding(150)
         )
         
-        .background(.thinMaterial)
+        .background(Color.blue.opacity(0.4))
+        
     }
 }
 

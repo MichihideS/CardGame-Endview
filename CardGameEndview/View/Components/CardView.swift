@@ -22,11 +22,34 @@ struct CardView: View {
                     VStack {
                         Text("\(card.name)")
                             .bold()
+                            .padding(1)
+                            .background {
+                                RoundedRectangle(cornerRadius: 5)
+                                    .fill(.thinMaterial.opacity(0.6))
+                                    .opacity(0.8)
+                            }
                         
                         HStack {
                             Text("ATK: \(card.attack)")
+                                .bold()
+                                .font(.system(size: 11))
+                                .padding(1)
+                                .background {
+                                    RoundedRectangle(cornerRadius: 5)
+                                        .fill(.thinMaterial.opacity(0.6))
+                                        .opacity(0.8)
+                                }
                             Text("DEF: \(card.defense)")
+                                .bold()
+                                .font(.system(size: 11))
+                                .padding(1)
+                                .background {
+                                    RoundedRectangle(cornerRadius: 5)
+                                        .fill(.thinMaterial.opacity(0.6))
+                                        .opacity(0.8)
+                                }
                         }
+                        .padding(.bottom, 5)
                     }
                     
                     Image("game_bg")

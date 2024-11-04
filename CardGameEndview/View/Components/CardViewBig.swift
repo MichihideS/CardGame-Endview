@@ -54,6 +54,11 @@ struct CardViewBig: View {
                 game.cancelBigCard()
             }, text: "Cancel")
         }
+        
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .ignoresSafeArea()
+        .background(Color.black.opacity(0.6))
+        
     }
 }
 
