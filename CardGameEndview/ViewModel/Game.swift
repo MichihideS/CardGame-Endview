@@ -122,10 +122,10 @@ class Game: ObservableObject {
             
             if playerStatus == DROWN {
                 playerAttack = checkForStatusDrown(attack: usedCard.attack)
-            }
-            
-            if playerStatus == BLIND {
+            } else if playerStatus == BLIND {
                 playerAttack = checkForStatusBlind(attack: usedCard.attack)
+            } else {
+                playerAttack = usedCard.attack
             }
             
             if (playerAttack - enemyDefenseResponse) > 0  {
@@ -313,10 +313,10 @@ class Game: ObservableObject {
             
             if enemyStatus == DROWN {
                 enemyAttack = checkForStatusDrown(attack: usedCardEnemy.attack)
-            }
-            
-            if enemyStatus == BLIND {
+            } else if enemyStatus == BLIND {
                 enemyAttack = checkForStatusBlind(attack: usedCardEnemy.attack)
+            } else {
+                enemyAttack = usedCardEnemy.attack
             }
             
             if (enemyAttack - usedCard.defense) > 0  {
