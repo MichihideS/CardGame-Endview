@@ -94,7 +94,7 @@ struct GameView: View {
                     
                     ButtonGame(function: {
                         game.endTurn()
-                    }, text: "End Turn")
+                    }, text: game.endTurnText())
                     .disabled(game.isCardPressed)
                 }
             }

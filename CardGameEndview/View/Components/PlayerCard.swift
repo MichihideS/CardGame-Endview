@@ -13,19 +13,34 @@ struct PlayerCard: View {
     
     var playerData: PlayerData
     
+    var color: Color = Color(.white)
+    
     var body: some View {
         VStack {
-            Text(playerData.name)
-                .bold()
-                .font(.title)
-                .foregroundStyle(.white)
+            HStack {
+                Text(playerData.name)
+                    .bold()
+                    .font(.title)
+                    .foregroundStyle(.white)
+                    .padding(.leading, 30)
+                
+                Spacer()
+                
+                Text("Win%: \(String(game.winRatio(wins: playerData.wins, losses: playerData.losses)))%")
+                    .bold()
+                    .font(.title2)
+                    .foregroundStyle(.white)
+                    .padding(.trailing, 30)
+            }
+            .padding(.top, 10)
+            .padding(.bottom, 10)
             
             HStack {
                 Text("Wins: \(String(playerData.wins))")
                     .bold()
                     .font(.title3)
                     .foregroundStyle(.white)
-                    .padding(.leading, 10)
+                    .padding(.leading, 50)
                 
                 Spacer()
                 
@@ -33,21 +48,17 @@ struct PlayerCard: View {
                     .bold()
                     .font(.title3)
                     .foregroundStyle(.white)
-                    .padding(.horizontal, 10)
+                    .padding(.trailing, 50)
             }
-            
-            Text("Win%: \(String(game.winRatio(wins: playerData.wins, losses: playerData.losses)))%")
-                .bold()
-                .font(.title2)
-                .foregroundStyle(.white)
+            .padding(.bottom, 10)
+           
         }
-        .frame(width: .infinity, height: 150)
+        .frame(maxWidth: .infinity, maxHeight: 100)
         .background {
             RoundedRectangle(cornerRadius: 10)
-                .fill(.green)
+                .fill(game.winRatioColor(wins: playerData.wins, Losses: playerData.losses))
                 .stroke(.thinMaterial, lineWidth: 4)
         }
-        //.clipShape(.buttonBorder)
         .padding()
     }
 }

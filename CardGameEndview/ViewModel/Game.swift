@@ -369,6 +369,18 @@ class Game: ObservableObject {
         }
     }
     
+    func endTurnText() -> String {
+        var text = ""
+        
+        if whosTurn == 1 {
+            text = "End Turn"
+        } else {
+            text = "Don't Defend"
+        }
+        
+        return text
+    }
+    
     
     // Adds a new card at the start of every players turn
     func startTurn() {
@@ -477,6 +489,33 @@ class Game: ObservableObject {
         
         let rounded = ceil(ratio)
         return Int(rounded)
+    }
+    
+    func winRatioColor(wins: Int, Losses: Int) -> Color {
+        let colorNumber = winRatio(wins: wins, losses: Losses)
+        var color = Color(.white)
+        
+        if colorNumber > 90 {
+            color = Color(.green)
+        }
+        
+        if colorNumber > 70 && colorNumber <= 90  {
+            color = Color(.blue)
+        }
+        
+        if colorNumber > 50 && colorNumber <= 70 {
+            color = Color(.yellow)
+        }
+        
+        if colorNumber > 30 && colorNumber <= 50 {
+            color = Color(.orange)
+        }
+        
+        if colorNumber <= 30 {
+            color = Color(.red)
+        }
+        
+        return color
     }
     
     // Draw one card for End turn or start turn (CAN BE OPTIMIZED)
