@@ -11,45 +11,32 @@ struct RegisterView: View {
     @EnvironmentObject var db: DbConnection
     @State var email = ""
     @State var password = ""
-    @State var confirmPassword = ""
     @State var name = ""
     
     var body: some View {
-        VStack {
-            Text("Create account")
-                .bold()
-                .font(.title)
+        ZStack {
+            Background()
+            VStack {
+                VStack {
+                    MainTextTitle(text: "Create Account")
+                }
+                
+                VStack {
+                    TextFieldNormal(label: "Email address", text: $email)
+                    
+                    TextFieldNormal(label: "Username", text: $name)
+                    
+                    TextFieldSecure(label: "Password", text: $password)
+                        .padding(.bottom)
+                    
+                    ButtonMainMenu(function: {
+                        db.registerPlayer(email: email, username: name, password: password)
+                    }, text: "Register")
+                    
+                    NavigationButton(destination: LoginView(), text: "Cancel")
+                }
+            }
         }
-        
-        VStack {
-            TextField("Email address", text: $email)
-                .textFieldStyle(.roundedBorder)
-                .keyboardType(.emailAddress)
-                .textInputAutocapitalization(.never)
-            
-            TextField("Username", text: $name)
-                .textFieldStyle(.roundedBorder)
-                .keyboardType(.emailAddress)
-                .textInputAutocapitalization(.never)
-            
-            SecureField("Password", text: $password)
-                .textFieldStyle(.roundedBorder)
-            
-            SecureField("Confirm Password", text: $confirmPassword)
-                .textFieldStyle(.roundedBorder)
-            
-            Button(action: {
-                db.registerPlayer(email: email, username: name, password: password)
-            }, label: {
-                Text("Register")
-                    .bold()
-                    .padding()
-                    .foregroundStyle(.white)
-                    .background(.black)
-                    .clipShape(.buttonBorder)
-            })
-        }
-        
     }
 }
 

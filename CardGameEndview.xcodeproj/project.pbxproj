@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C3326632CD8EDDD008F65A8 /* TextFieldSecure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3326622CD8EDDD008F65A8 /* TextFieldSecure.swift */; };
+		9C3326652CD8EF7D008F65A8 /* MainTextTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3326642CD8EF7D008F65A8 /* MainTextTitle.swift */; };
+		9C3326672CD8F742008F65A8 /* NavigationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3326662CD8F742008F65A8 /* NavigationButton.swift */; };
 		9C89FF052CCECC5400686E49 /* CardViewBig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C89FF042CCECC5400686E49 /* CardViewBig.swift */; };
 		9C89FF072CCF9D2800686E49 /* CardViewEnemyBig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C89FF062CCF9D2800686E49 /* CardViewEnemyBig.swift */; };
 		9CD413D22CC410810002629B /* CardGameEndviewApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD413D12CC410810002629B /* CardGameEndviewApp.swift */; };
@@ -28,6 +31,7 @@
 		9CD6C7252CD2A66F0034633A /* PlayerCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD6C7242CD2A66F0034633A /* PlayerCard.swift */; };
 		9CD6C7272CD2ABDE0034633A /* HighscoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD6C7262CD2ABDE0034633A /* HighscoreView.swift */; };
 		9CD6C7292CD2B0C50034633A /* PlayerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD6C7282CD2B0C50034633A /* PlayerData.swift */; };
+		9CD6C72B2CD38AFB0034633A /* OnlineGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD6C72A2CD38AFB0034633A /* OnlineGame.swift */; };
 		9CDFAAEA2CD15BE500449625 /* CardViewEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDFAAE92CD15BE500449625 /* CardViewEnemy.swift */; };
 		9CDFAAEC2CD1A55600449625 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9CDFAAEB2CD1A55600449625 /* GoogleService-Info.plist */; };
 		9CDFAAEF2CD1A66B00449625 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 9CDFAAEE2CD1A66B00449625 /* FirebaseAuth */; };
@@ -36,6 +40,9 @@
 		9CDFAAF52CD1A66B00449625 /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 9CDFAAF42CD1A66B00449625 /* FirebaseFirestoreCombine-Community */; };
 		9CDFAAF72CD1A66B00449625 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 9CDFAAF62CD1A66B00449625 /* FirebaseStorage */; };
 		9CDFAAF92CD1A66B00449625 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 9CDFAAF82CD1A66B00449625 /* FirebaseStorageCombine-Community */; };
+		9CE44AFC2CD832AC000941C3 /* ButtonMainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE44AFB2CD832AC000941C3 /* ButtonMainMenu.swift */; };
+		9CE44B002CD8E7B2000941C3 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE44AFF2CD8E7B2000941C3 /* Background.swift */; };
+		9CE44B022CD8E8FB000941C3 /* TextFieldNormal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE44B012CD8E8FB000941C3 /* TextFieldNormal.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +63,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9C3326622CD8EDDD008F65A8 /* TextFieldSecure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldSecure.swift; sourceTree = "<group>"; };
+		9C3326642CD8EF7D008F65A8 /* MainTextTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTextTitle.swift; sourceTree = "<group>"; };
+		9C3326662CD8F742008F65A8 /* NavigationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationButton.swift; sourceTree = "<group>"; };
 		9C89FF042CCECC5400686E49 /* CardViewBig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewBig.swift; sourceTree = "<group>"; };
 		9C89FF062CCF9D2800686E49 /* CardViewEnemyBig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewEnemyBig.swift; sourceTree = "<group>"; };
 		9CD413CE2CC410810002629B /* CardGameEndview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardGameEndview.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,8 +90,12 @@
 		9CD6C7242CD2A66F0034633A /* PlayerCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCard.swift; sourceTree = "<group>"; };
 		9CD6C7262CD2ABDE0034633A /* HighscoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighscoreView.swift; sourceTree = "<group>"; };
 		9CD6C7282CD2B0C50034633A /* PlayerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerData.swift; sourceTree = "<group>"; };
+		9CD6C72A2CD38AFB0034633A /* OnlineGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineGame.swift; sourceTree = "<group>"; };
 		9CDFAAE92CD15BE500449625 /* CardViewEnemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewEnemy.swift; sourceTree = "<group>"; };
 		9CDFAAEB2CD1A55600449625 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9CE44AFB2CD832AC000941C3 /* ButtonMainMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonMainMenu.swift; sourceTree = "<group>"; };
+		9CE44AFF2CD8E7B2000941C3 /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
+		9CE44B012CD8E8FB000941C3 /* TextFieldNormal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldNormal.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +194,7 @@
 				9CD413FE2CC4119D0002629B /* Card.swift */,
 				9CD4143E2CC5A7760002629B /* CardDeck.swift */,
 				9CD6C7282CD2B0C50034633A /* PlayerData.swift */,
+				9CD6C72A2CD38AFB0034633A /* OnlineGame.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -212,6 +227,12 @@
 				9CDFAAE92CD15BE500449625 /* CardViewEnemy.swift */,
 				9C89FF062CCF9D2800686E49 /* CardViewEnemyBig.swift */,
 				9CD6C7242CD2A66F0034633A /* PlayerCard.swift */,
+				9CE44AFB2CD832AC000941C3 /* ButtonMainMenu.swift */,
+				9CE44AFF2CD8E7B2000941C3 /* Background.swift */,
+				9CE44B012CD8E8FB000941C3 /* TextFieldNormal.swift */,
+				9C3326622CD8EDDD008F65A8 /* TextFieldSecure.swift */,
+				9C3326642CD8EF7D008F65A8 /* MainTextTitle.swift */,
+				9C3326662CD8F742008F65A8 /* NavigationButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -377,10 +398,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C3326632CD8EDDD008F65A8 /* TextFieldSecure.swift in Sources */,
+				9C3326652CD8EF7D008F65A8 /* MainTextTitle.swift in Sources */,
 				9CD6C71D2CD24FAF0034633A /* DbConnection.swift in Sources */,
 				9CDFAAEA2CD15BE500449625 /* CardViewEnemy.swift in Sources */,
 				9CD6C7252CD2A66F0034633A /* PlayerCard.swift in Sources */,
+				9C3326672CD8F742008F65A8 /* NavigationButton.swift in Sources */,
+				9CE44B022CD8E8FB000941C3 /* TextFieldNormal.swift in Sources */,
 				9C89FF052CCECC5400686E49 /* CardViewBig.swift in Sources */,
+				9CE44AFC2CD832AC000941C3 /* ButtonMainMenu.swift in Sources */,
 				9CD414052CC418540002629B /* LoggedInView.swift in Sources */,
 				9CD413FF2CC4119D0002629B /* Card.swift in Sources */,
 				9CD6C7292CD2B0C50034633A /* PlayerData.swift in Sources */,
@@ -389,11 +415,13 @@
 				9CD4143F2CC5A7760002629B /* CardDeck.swift in Sources */,
 				9CD413D22CC410810002629B /* CardGameEndviewApp.swift in Sources */,
 				9CD6C7212CD25BA90034633A /* ContentView.swift in Sources */,
+				9CD6C72B2CD38AFB0034633A /* OnlineGame.swift in Sources */,
 				9CD6C7272CD2ABDE0034633A /* HighscoreView.swift in Sources */,
 				9CD414032CC418370002629B /* GameView.swift in Sources */,
 				9CD6C7232CD29FFA0034633A /* RegisterView.swift in Sources */,
 				9CD414412CC5A8030002629B /* Game.swift in Sources */,
 				9C89FF072CCF9D2800686E49 /* CardViewEnemyBig.swift in Sources */,
+				9CE44B002CD8E7B2000941C3 /* Background.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

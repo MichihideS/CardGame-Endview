@@ -11,56 +11,24 @@ struct LoggedInView: View {
     @EnvironmentObject var db: DbConnection
     
     var body: some View {
+        ZStack {
+            Background()
             VStack {
-                if let currentName = db.currentPlayerData?.name {
-                    Text("Welcome: \(currentName)")
-                        .bold()
-                        .font(.title)
+                VStack {
+                    if let currentName = db.currentPlayerData?.name {
+                        MainTextTitle(text: "Welcome: \(currentName)")
+                    }
+                    
+                    NavigationButton(destination: GameView(), text: "Play Game")
+                    
+                    NavigationButton(destination: HighscoreView(), text: "Highscore")
+                    
+                    ButtonMainMenu(function: {
+                        db.signOut()
+                    }, text: "Sign Out")
                 }
-               
-                Button(action: {
-                    db.minusOne()
-                }, label: {
-                        Text("CHeaT")
-                })
-                
-                NavigationLink(destination: { GameView() }) {
-                    Text("Play Game")
-                }
-                
-                NavigationLink(destination: { HighscoreView()}) {
-                    Text("Highscore")
-                        .bold()
-                        .padding()
-                        .foregroundStyle(.white)
-                        .background(.black)
-                        .clipShape(.buttonBorder)
-                }
-                
-                Button(action: {
-                    db.signOut()
-                }, label: {
-                    Text("Sign Out")
-                        .padding()
-                        .foregroundStyle(.white)
-                        .background(.black)
-                        .clipShape(.buttonBorder)
-                })
-                
-                // REMOV LATER
-                Button(action: {
-                    print(db.currentPlayerData?.name)
-                }, label: {
-                    Text("CHECK USER VALUE")
-                        .bold()
-                        .padding()
-                        .font(.title)
-                        .foregroundStyle(.white)
-                        .background(.black)
-                        .clipShape(.buttonBorder)
-                })
             }
-        
+        }
     }
 }
 

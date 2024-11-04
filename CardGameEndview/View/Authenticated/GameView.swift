@@ -9,6 +9,7 @@ import SwiftUI
 
 struct GameView: View {
     @EnvironmentObject var game: Game
+    @State private var isAnimating = false
     
     var body: some View {
         ZStack {
@@ -16,7 +17,6 @@ struct GameView: View {
                 VStack {
                     Button(action: {
                         game.drawCardsStart()
-                        print(game.playerCards)
                     }, label: {
                         Text("DRAWTEST")
                     }).padding()
@@ -69,7 +69,14 @@ struct GameView: View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Image("game_bg").opacity(0.8))
+        .background(Image("logo_tower")
+            .resizable()
+            .scaledToFill()
+            .opacity(0.1)
+            .padding(100)
+        )
+        
+        .background(.thinMaterial)
         .overlay {
             if let _ = game.whoWon {
                 VStack {
@@ -88,10 +95,11 @@ struct GameView: View {
                     .clipShape(.buttonBorder)
                     
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(.thinMaterial).ignoresSafeArea()
+          
             }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(.thinMaterial).ignoresSafeArea()
     }
 }
 

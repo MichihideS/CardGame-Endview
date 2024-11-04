@@ -27,6 +27,15 @@ struct CardDeck {
         Card(name: "Dark Mist", attack: 5, defense: 0, cost: 5, special: DEATH, image: "", color: Color(.purple)),
         Card(name: "Dark Assassin", attack: 1, defense: 0, cost: 3, special: DEATH, image: "", color: Color(.purple)),
         Card(name: "Whirlpool", attack: 8, defense: 0, cost: 4, special: DROWN, image: "", color: Color(.blue)),
+        Card(name: "Swift Strike", attack: 10, defense: 0, cost: 2, special: WIND, image: "", color: Color(.green)),
+        Card(name: "Swift Strike", attack: 10, defense: 0, cost: 2, special: WIND, image: "", color: Color(.green)),
+        Card(name: "Swift Strike", attack: 10, defense: 0, cost: 2, special: WIND, image: "", color: Color(.green)),
+        Card(name: "Swift Strike", attack: 10, defense: 0, cost: 2, special: WIND, image: "", color: Color(.green)),
+        Card(name: "Swift Strike", attack: 10, defense: 0, cost: 2, special: WIND, image: "", color: Color(.green)),
+        Card(name: "Swift Strike", attack: 10, defense: 0, cost: 2, special: WIND, image: "", color: Color(.green)),
+        Card(name: "Swift Strike", attack: 10, defense: 0, cost: 2, special: WIND, image: "", color: Color(.green)),
+        Card(name: "Swift Strike", attack: 10, defense: 0, cost: 2, special: WIND, image: "", color: Color(.green)),
         Card(name: "Swift Strike", attack: 10, defense: 0, cost: 2, special: WIND, image: "", color: Color(.green))
+        
             ]
 }

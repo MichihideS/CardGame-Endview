@@ -22,6 +22,15 @@ struct HighscoreView: View {
                     PlayerCard(playerData: player)}
             }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Image("logo_tower")
+            .resizable()
+            .scaledToFill()
+            .opacity(0.1)
+            .padding(100)
+        )
+        
+        .background(.thinMaterial)
     }
 }
 

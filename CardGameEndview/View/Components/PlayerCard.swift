@@ -41,9 +41,14 @@ struct PlayerCard: View {
                 .font(.title2)
                 .foregroundStyle(.white)
         }
-        .frame(width: 300, height: 150)
-        .background(.green)
-        .clipShape(.buttonBorder)
+        .frame(width: .infinity, height: 150)
+        .background {
+            RoundedRectangle(cornerRadius: 10)
+                .fill(.green)
+                .stroke(.thinMaterial, lineWidth: 4)
+        }
+        //.clipShape(.buttonBorder)
+        .padding()
     }
 }
 

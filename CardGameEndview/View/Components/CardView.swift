@@ -37,7 +37,9 @@ struct CardView: View {
                 .frame(width: 100, height: 150)
                 .padding(10)
                 .border(Color.black, width: 1)
-                .background(Color(card.color))
+                .background(Color(card.color.opacity(0.5)))
+                .background(.white)
+                //.background(.thinMaterial)
             })
             
         }

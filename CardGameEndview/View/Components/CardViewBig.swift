@@ -25,6 +25,10 @@ struct CardViewBig: View {
                     }
                 }
                 
+                Image("game_bg")
+                    .resizable()
+                    .frame(width: 180, height: 180)
+                
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                 
                 Text("\(game.checkSpecialAttribute(element: card.special))")
@@ -33,7 +37,8 @@ struct CardViewBig: View {
             .frame(width: 200, height: 300)
             .padding(10)
             .border(Color.black, width: 1)
-            .background(Color(card.color))
+            .background(Color(card.color.opacity(0.8)))
+            .background(.thinMaterial)
             
             
             Button(action: {

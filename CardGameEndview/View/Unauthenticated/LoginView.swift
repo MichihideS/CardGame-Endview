@@ -13,53 +13,28 @@ struct LoginView: View {
     @State var password = ""
     
     var body: some View {
-        VStack {
-            Text("LOGIN")
-                .bold()
-                .font(.title)
-        }
-        
-        VStack {
-            TextField("Email address", text: $email)
-                .textFieldStyle(.roundedBorder)
-                .keyboardType(.emailAddress)
-                .textInputAutocapitalization(.never)
-            
-            SecureField("Password", text: $password)
-                .textFieldStyle(.roundedBorder)
-            
-            Button(action: {
-                db.loginUser(email: email, password: password)
-            }, label: {
-                Text("Login")
-                    .bold()
-                    .padding()
-                    .foregroundStyle(.white)
-                    .background(.black)
-                    .clipShape(.buttonBorder)
-            })
-            
-            NavigationLink(destination: { RegisterView()}) {
-                Text("Register")
-                    .bold()
-                    .padding()
-                    .foregroundStyle(.white)
-                    .background(.black)
-                    .clipShape(.buttonBorder)
+        ZStack {
+            Background()
+            VStack(alignment: .center) {
+                VStack {
+                    MainTextTitle(text: "Please Login")
+                }
+                
+                VStack {
+                    VStack {
+                        TextFieldNormal(label: "Email address", text: $email)
+                        
+                        TextFieldSecure(label: "Password", text: $password)
+                    }
+                    .padding(.bottom)
+                    
+                    ButtonMainMenu(function: {
+                        db.loginUser(email: email, password: password)
+                    }, text: "Login")
+                    
+                    NavigationButton(destination: RegisterView(), text: "Register")
+                }
             }
-            
-            // REMOVE LATER
-            Button(action: {
-                print(db.currentPlayerData?.name)
-            }, label: {
-                Text("CHECK USER VALUE")
-                    .bold()
-                    .padding()
-                    .font(.title)
-                    .foregroundStyle(.white)
-                    .background(.black)
-                    .clipShape(.buttonBorder)
-            })
         }
     }
 }
