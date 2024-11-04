@@ -25,7 +25,7 @@ struct CardViewBig: View {
                     }
                 }
                 
-                Image("game_bg")
+                Image(card.image)
                     .resizable()
                     .frame(width: 180, height: 180)
                     .clipShape(.rect(cornerRadius: 5))

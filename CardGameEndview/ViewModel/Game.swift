@@ -52,7 +52,7 @@ class Game: ObservableObject {
         var enemyCounter = 0
         
         while playerCounter < 6 {
-            let randomNumber = Int.random(in: 0...11)
+            let randomNumber = Int.random(in: 0...cardDeck.deckOfCards.count - 1)
             var isDupe = false
             
             if playerCards.isEmpty {
@@ -75,7 +75,7 @@ class Game: ObservableObject {
         }
         
         while enemyCounter < 6 {
-            let randomNumber = Int.random(in: 0...19)
+            let randomNumber = Int.random(in: 0...cardDeck.deckOfCards.count - 1)
             var isDupe = false
             
             if enemyCards.isEmpty {
@@ -524,7 +524,7 @@ class Game: ObservableObject {
             var playerCounter = 0
             
             while playerCounter < 1 {
-                let randomNumber = Int.random(in: 0...19)
+                let randomNumber = Int.random(in: 0...cardDeck.deckOfCards.count - 1)
                 var isDupe = false
                 
                 if playerCards.isEmpty {
@@ -551,7 +551,7 @@ class Game: ObservableObject {
             var enemyCounter = 0
             
             while enemyCounter < 1 {
-                let randomNumber = Int.random(in: 0...19)
+                let randomNumber = Int.random(in: 0...cardDeck.deckOfCards.count - 1)
                 var isDupe = false
                 
                 if enemyCards.isEmpty {

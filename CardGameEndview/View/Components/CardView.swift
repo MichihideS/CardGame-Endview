@@ -52,7 +52,7 @@ struct CardView: View {
                         .padding(.bottom, 5)
                     }
                     
-                    Image("game_bg")
+                    Image(card.image)
                         .resizable()
                         .frame(width: 80, height: 80)
                         .clipShape(.rect(cornerRadius: 5))
@@ -77,5 +77,5 @@ struct CardView: View {
 }
 
 #Preview {
-    CardView(card: Card(name: "Test", attack: 30, defense: 20, cost: 5, special: 3, image: "", color: Color(.purple))).environmentObject(Game())
+    CardView(card: Card(name: "Test", attack: 30, defense: 20, cost: 5, special: 3, image: "fiery_wave", color: Color(.purple))).environmentObject(Game())
 }
