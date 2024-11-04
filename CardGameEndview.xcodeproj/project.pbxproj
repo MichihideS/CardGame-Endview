@@ -11,6 +11,7 @@
 		9C3326652CD8EF7D008F65A8 /* MainTextTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3326642CD8EF7D008F65A8 /* MainTextTitle.swift */; };
 		9C3326672CD8F742008F65A8 /* NavigationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3326662CD8F742008F65A8 /* NavigationButton.swift */; };
 		9C3326692CD91BDF008F65A8 /* ButtonGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3326682CD91BDF008F65A8 /* ButtonGame.swift */; };
+		9C33266B2CD978BA008F65A8 /* GameTextTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C33266A2CD978BA008F65A8 /* GameTextTitle.swift */; };
 		9C89FF052CCECC5400686E49 /* CardViewBig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C89FF042CCECC5400686E49 /* CardViewBig.swift */; };
 		9C89FF072CCF9D2800686E49 /* CardViewEnemyBig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C89FF062CCF9D2800686E49 /* CardViewEnemyBig.swift */; };
 		9CD413D22CC410810002629B /* CardGameEndviewApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD413D12CC410810002629B /* CardGameEndviewApp.swift */; };
@@ -68,6 +69,7 @@
 		9C3326642CD8EF7D008F65A8 /* MainTextTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTextTitle.swift; sourceTree = "<group>"; };
 		9C3326662CD8F742008F65A8 /* NavigationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationButton.swift; sourceTree = "<group>"; };
 		9C3326682CD91BDF008F65A8 /* ButtonGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonGame.swift; sourceTree = "<group>"; };
+		9C33266A2CD978BA008F65A8 /* GameTextTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTextTitle.swift; sourceTree = "<group>"; };
 		9C89FF042CCECC5400686E49 /* CardViewBig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewBig.swift; sourceTree = "<group>"; };
 		9C89FF062CCF9D2800686E49 /* CardViewEnemyBig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewEnemyBig.swift; sourceTree = "<group>"; };
 		9CD413CE2CC410810002629B /* CardGameEndview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardGameEndview.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -235,6 +237,7 @@
 				9CE44B012CD8E8FB000941C3 /* TextFieldNormal.swift */,
 				9C3326622CD8EDDD008F65A8 /* TextFieldSecure.swift */,
 				9C3326642CD8EF7D008F65A8 /* MainTextTitle.swift */,
+				9C33266A2CD978BA008F65A8 /* GameTextTitle.swift */,
 				9C3326662CD8F742008F65A8 /* NavigationButton.swift */,
 			);
 			path = Components;
@@ -404,6 +407,7 @@
 				9C3326632CD8EDDD008F65A8 /* TextFieldSecure.swift in Sources */,
 				9C3326652CD8EF7D008F65A8 /* MainTextTitle.swift in Sources */,
 				9C3326692CD91BDF008F65A8 /* ButtonGame.swift in Sources */,
+				9C33266B2CD978BA008F65A8 /* GameTextTitle.swift in Sources */,
 				9CD6C71D2CD24FAF0034633A /* DbConnection.swift in Sources */,
 				9CDFAAEA2CD15BE500449625 /* CardViewEnemy.swift in Sources */,
 				9CD6C7252CD2A66F0034633A /* PlayerCard.swift in Sources */,

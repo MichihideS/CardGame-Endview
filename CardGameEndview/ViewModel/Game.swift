@@ -32,6 +32,7 @@ class Game: ObservableObject {
     
     @Published var isCardPressed = false
     @Published var whosTurn = 1
+    @Published var whosTurnText: String? = nil
     @Published var whoWon: Int? = nil
     @Published var whoWonText = ""
     @Published var indexOfCardPressed: Int? = nil
@@ -39,6 +40,13 @@ class Game: ObservableObject {
     @Published var usedCard: Card? = nil
     @Published var enemyDefenseResponse: Int = 0
     @Published var usedCardEnemy: Card? = nil
+    @Published var usedCardEnemyDefense: Card? = nil
+    
+    @Published var isShowingBigCard: Bool = false
+    @Published var isShowingBigCardEnemyDefense: Bool = false
+    @Published var isShowingBigCardEnemyAttack: Bool = false
+    @Published var isShowingWhosTurn: Bool = false
+    @Published var isNotAllowedToAct = false
     
     let BURN = "Burned"
     let DROWN = "Drowned"
@@ -108,6 +116,25 @@ class Game: ObservableObject {
         }
     }
     
+    func checkWhosTurnText() {
+        if whosTurn == 1 {
+            whosTurnText = "Your Turn"
+            withAnimation {
+                isShowingWhosTurn = true
+            }
+        } else {
+            whosTurnText = "Enemy Turn"
+            withAnimation {
+                isShowingWhosTurn = true
+            }
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.whosTurnText = nil
+            self.isShowingWhosTurn = false
+        }
+    }
+    
     func playerTurnCalculations() {
         var playerAttack = 0
         
@@ -118,30 +145,36 @@ class Game: ObservableObject {
         guard let usedCard = usedCard else { return }
         
         if usedCard.attack > 0 {
+            isNotAllowedToAct = true
+            isShowingBigCard = false
             checkEnemyDefenseCards()
             
-            if playerStatus == DROWN {
-                playerAttack = checkForStatusDrown(attack: usedCard.attack)
-            } else if playerStatus == BLIND {
-                playerAttack = checkForStatusBlind(attack: usedCard.attack)
-            } else {
-                playerAttack = usedCard.attack
-            }
-            
-            if (playerAttack - enemyDefenseResponse) > 0  {
-                let enemyDefense = checkForStatusWind(defense: enemyDefenseResponse)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                 
-                enemyHealth = enemyHealth - (playerAttack - enemyDefense)
-                
-                if usedCard.special > 0 {
-                    checkSpecialAttackHit(special: usedCard.special)
+                if self.playerStatus == self.DROWN {
+                    playerAttack = self.checkForStatusDrown(attack: usedCard.attack)
+                } else if self.playerStatus == self.BLIND {
+                    playerAttack = self.checkForStatusBlind(attack: usedCard.attack)
+                } else {
+                    playerAttack = usedCard.attack
                 }
+                
+                if (playerAttack - self.enemyDefenseResponse) > 0  {
+                    let enemyDefense = self.checkForStatusWind(defense: self.enemyDefenseResponse)
+                    
+                    self.enemyHealth = self.enemyHealth - (playerAttack - enemyDefense)
+                    
+                    if usedCard.special > 0 {
+                        self.checkSpecialAttackHit(special: usedCard.special)
+                    }
+                }
+                
+                self.usedCardEnemyDefense = nil
+                self.playerCards.remove(at: index)
+                self.indexOfCardPressed = nil
+                self.isCardPressed = false
+                self.enemyTurn()
             }
-            
-            playerCards.remove(at: index)
-            indexOfCardPressed = nil
-            isCardPressed = false
-            enemyTurn()
         }
     }
     
@@ -263,7 +296,14 @@ class Game: ObservableObject {
             $0.id == enemyCardsDefense[defense].id
         }) else { return }
         
+        usedCardEnemyDefense = enemyCardsDefense[defense]
+        
+        withAnimation {
+            isShowingBigCardEnemyDefense = true
+        }
+            
         enemyCards.remove(at: index)
+        
     }
     
     // Puts all the attack cards in a new array and randoms a card which is used for attack and deleted in the
@@ -271,6 +311,7 @@ class Game: ObservableObject {
     func enemyTurn() {
         checkWinner()
         whosTurn = 2
+        checkWhosTurnText()
         checkForStatusBurned()
         checkForStatusDeath()
         drawOneCard(whoDraws: 2)
@@ -289,13 +330,20 @@ class Game: ObservableObject {
         } else {
             attack = Int.random(in: 0...enemyCardsAttack.count - 1)
             
-            usedCardEnemy = enemyCardsAttack[attack]
-            
-            guard let index = enemyCards.firstIndex(where: {
-                $0.id == enemyCardsAttack[attack].id
-            }) else { return }
-            
-            enemyCards.remove(at: index)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                self.usedCardEnemy = self.enemyCardsAttack[attack]
+                
+                withAnimation {
+                    self.isShowingBigCardEnemyAttack = true
+                }
+                
+                guard let index = self.enemyCards.firstIndex(where: {
+                    $0.id == self.enemyCardsAttack[attack].id
+                }) else { return }
+                
+                self.enemyCards.remove(at: index)
+                self.isNotAllowedToAct = false
+            }
         }
     }
     
@@ -309,6 +357,8 @@ class Game: ObservableObject {
         guard let usedCardEnemy = usedCardEnemy else { return }
         
         if usedCard.defense > 0 {
+            isNotAllowedToAct = true
+            
             var enemyAttack = 0
             
             if enemyStatus == DROWN {
@@ -359,12 +409,16 @@ class Game: ObservableObject {
         enemyCardsDefense = []
         enemyCardsAttack = []
         whosTurn = 1
+        checkWhosTurnText()
         enemyDefenseResponse = 0
         checkForStatusBurned()
         checkForStatusDeath()
+        isShowingBigCardEnemyDefense = false
+        isShowingBigCardEnemyAttack = false
+        isNotAllowedToAct = false
     }
     
-    // Resets the whole game and srarts it up again
+    // Resets the whole game and starts it up again
     func resetGame() {
         counter = 0
         playerCards = []
@@ -478,7 +532,7 @@ class Game: ObservableObject {
     }
     
     
-    // Check if player has the status drown when they attack and if they do the attack value will be halved
+    // Check if player has the status drown when they attack and if they do the attack value will be halved.
     func checkForStatusDrown(attack: Int) -> Int {
         var attackModified = 0
         
@@ -501,6 +555,7 @@ class Game: ObservableObject {
         return attackModified
     }
     
+    // Check if player has the status blinded when they attack and if they do they have a 50% chance to miss.
     func checkForStatusBlind(attack: Int) -> Int {
         var attackModified = 0
         let randomNumber = Int.random(in: 1...2)

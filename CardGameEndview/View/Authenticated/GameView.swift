@@ -27,6 +27,7 @@ struct GameView: View {
                         }, text: "Vs Computer")
                     }
                 }
+                
                 if startGame {
                     VStack {
                         ScrollView(.horizontal) {
@@ -96,16 +97,34 @@ struct GameView: View {
                         game.endTurn()
                     }, text: game.endTurnText())
                     .disabled(game.isCardPressed)
+                    .disabled(game.isNotAllowedToAct)
                 }
             }
         }
         .overlay {
             if let usedCardEnemy = game.usedCardEnemy {
-                CardViewEnemyBig(card: usedCardEnemy)
+                if game.isShowingBigCardEnemyAttack {
+                    CardViewEnemyBig(card: usedCardEnemy)
+                }
+            
+            }
+            
+            if let usedCardEnemyDefense = game.usedCardEnemyDefense {
+                if game.isShowingBigCardEnemyDefense {
+                    CardViewEnemyBig(card: usedCardEnemyDefense)
+                }
             }
             
             if let index = game.indexOfCardPressed {
-                CardViewBig(card: game.playerCards[index])
+                if game.isShowingBigCard {
+                    CardViewBig(card: game.playerCards[index])
+                }
+            }
+            
+            if let whosTurnText = game.whosTurnText {
+                if game.isShowingWhosTurn {
+                    GameTextTitle(text: whosTurnText)
+                }
             }
             
             if let _ = game.whoWon {
@@ -125,7 +144,6 @@ struct GameView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .onAppear {
             startGame = false
-            game.resetGame()
         }
     }
 }

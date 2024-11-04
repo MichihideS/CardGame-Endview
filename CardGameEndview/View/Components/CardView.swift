@@ -16,6 +16,9 @@ struct CardView: View {
             Button(action: {
                 if game.isCardPressed == false {
                     game.checkIfCardIsPressed(uuid: card.id)
+                    withAnimation {
+                        game.isShowingBigCard = true
+                    }
                 }
             }, label: {
                 VStack {
@@ -70,12 +73,12 @@ struct CardView: View {
                 }
                 .background(.white)
             })
-            
+            .disabled(game.isNotAllowedToAct)
         }
         
     }
 }
 
 #Preview {
-    CardView(card: Card(name: "Test", attack: 30, defense: 20, cost: 5, special: 3, image: "fiery_wave", color: Color(.purple))).environmentObject(Game())
+    CardView(card: Card(name: "Test", attack: 30, defense: 20, cost: 5, special: 3, image: "firey_wave", color: Color(.purple))).environmentObject(Game())
 }

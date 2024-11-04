@@ -52,13 +52,13 @@ struct CardViewBig: View {
             
             ButtonGame(function: {
                 game.cancelBigCard()
+                game.isShowingBigCard = false
             }, text: "Cancel")
         }
         
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .ignoresSafeArea()
         .background(Color.black.opacity(0.6))
-        
     }
 }
 
