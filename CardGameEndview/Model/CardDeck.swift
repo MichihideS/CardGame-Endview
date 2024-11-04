@@ -12,7 +12,7 @@ let BURN = 1
 let DROWN = 2
 let DEATH = 3
 let WIND = 4
-let LIGHT = 5
+let BLIND = 5
 
 struct CardDeck {
     let deckOfCards: [Card] = [
@@ -49,11 +49,11 @@ struct CardDeck {
         Card(name: "Whirlpool", attack: 8, defense: 0, cost: 4, special: DROWN, image: "whirlpool", color: Color(.blue)),
         Card(name: "Whirlpool", attack: 8, defense: 0, cost: 4, special: DROWN, image: "whirlpool", color: Color(.blue)),
         Card(name: "Whirlpool", attack: 8, defense: 0, cost: 4, special: DROWN, image: "whirlpool", color: Color(.blue)),
-        Card(name: "Sword of Light", attack: 5, defense: 0, cost: 5, special: LIGHT, image: "sword_of_light", color: Color(.orange)),
-        Card(name: "Sword of Light", attack: 5, defense: 0, cost: 5, special: LIGHT, image: "sword_of_light", color: Color(.orange)),
-        Card(name: "Sword of Light", attack: 5, defense: 0, cost: 5, special: LIGHT, image: "sword_of_light", color: Color(.orange)),
-        Card(name: "Phoenix", attack: 8, defense: 0, cost: 6, special: LIGHT, image: "swift_strike", color: Color(.orange)),
-        Card(name: "Phoenix", attack: 8, defense: 0, cost: 6, special: LIGHT, image: "swift_strike", color: Color(.orange)),
-        Card(name: "Phoenix", attack: 8, defense: 0, cost: 6, special: LIGHT, image: "swift_strike", color: Color(.orange))
+        Card(name: "Sword of Light", attack: 5, defense: 0, cost: 5, special: BLIND, image: "sword_of_light", color: Color(.orange)),
+        Card(name: "Sword of Light", attack: 5, defense: 0, cost: 5, special: BLIND, image: "sword_of_light", color: Color(.orange)),
+        Card(name: "Sword of Light", attack: 5, defense: 0, cost: 5, special: BLIND, image: "sword_of_light", color: Color(.orange)),
+        Card(name: "Phoenix", attack: 8, defense: 0, cost: 6, special: BLIND, image: "swift_strike", color: Color(.orange)),
+        Card(name: "Phoenix", attack: 8, defense: 0, cost: 6, special: BLIND, image: "swift_strike", color: Color(.orange)),
+        Card(name: "Phoenix", attack: 8, defense: 0, cost: 6, special: BLIND, image: "swift_strike", color: Color(.orange))
     ]
 }

@@ -45,6 +45,7 @@ class Game: ObservableObject {
     let DEATH = "Death"
     let WIND = "Windy"
     let NORMAL = "Normal"
+    let BLIND = "Blinded"
     
     // Randomizes which card are drawn by both the player and enemy when you start the game.
     func drawCardsStart() {
@@ -108,6 +109,8 @@ class Game: ObservableObject {
     }
     
     func playerTurnCalculations() {
+        var playerAttack = 0
+        
         guard let index = indexOfCardPressed else { return }
         
         usedCard = playerCards[index]
@@ -117,7 +120,13 @@ class Game: ObservableObject {
         if usedCard.attack > 0 {
             checkEnemyDefenseCards()
             
-            let playerAttack = checkForStatusDrown(attack: usedCard.attack)
+            if playerStatus == DROWN {
+                playerAttack = checkForStatusDrown(attack: usedCard.attack)
+            }
+            
+            if playerStatus == BLIND {
+                playerAttack = checkForStatusBlind(attack: usedCard.attack)
+            }
             
             if (playerAttack - enemyDefenseResponse) > 0  {
                 let enemyDefense = checkForStatusWind(defense: enemyDefenseResponse)
@@ -190,6 +199,14 @@ class Game: ObservableObject {
             } else {
                 playerStatus = WIND
                 playerStatusColor = Color(.green)
+            }
+        case 5:
+            if whosTurn == 1 {
+                enemyStatus = BLIND
+                enemyStatusColor = Color(.orange)
+            } else {
+                playerStatus = BLIND
+                playerStatusColor = Color(.orange)
             }
         default:
             break
@@ -292,7 +309,15 @@ class Game: ObservableObject {
         guard let usedCardEnemy = usedCardEnemy else { return }
         
         if usedCard.defense > 0 {
-            let enemyAttack = checkForStatusDrown(attack: usedCardEnemy.attack)
+            var enemyAttack = 0
+            
+            if enemyStatus == DROWN {
+                enemyAttack = checkForStatusDrown(attack: usedCardEnemy.attack)
+            }
+            
+            if enemyStatus == BLIND {
+                enemyAttack = checkForStatusBlind(attack: usedCardEnemy.attack)
+            }
             
             if (enemyAttack - usedCard.defense) > 0  {
                 let playerDefense = checkForStatusWind(defense: usedCard.defense)
@@ -468,6 +493,29 @@ class Game: ObservableObject {
         if whosTurn == 1 && playerStatus == DROWN {
             if attack > 0 {
                 attackModified = attack / 2
+            }
+        } else if whosTurn == 1 {
+            attackModified = attack
+        }
+        
+        return attackModified
+    }
+    
+    func checkForStatusBlind(attack: Int) -> Int {
+        var attackModified = 0
+        let randomNumber = Int.random(in: 1...2)
+        
+        if whosTurn == 2 && enemyStatus == BLIND {
+            if attack > 0 && randomNumber == 1 {
+                attackModified = 0
+            }
+        } else if whosTurn == 2 {
+            attackModified = attack
+        }
+        
+        if whosTurn == 1 && playerStatus == BLIND {
+            if attack > 0 && randomNumber == 1 {
+                attackModified = 0
             }
         } else if whosTurn == 1 {
             attackModified = attack
