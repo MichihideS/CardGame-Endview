@@ -25,15 +25,25 @@ struct CardViewEnemyBig: View {
                     }
                 }
                 
+                Image("game_bg")
+                    .resizable()
+                    .frame(width: 180, height: 180)
+                    .clipShape(.rect(cornerRadius: 5))
+                
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                 
                 Text("\(game.checkSpecialAttribute(element: card.special))")
             }
             .foregroundColor(.black)
-            .frame(width: 140, height: 200)
+            .frame(width: 200, height: 300)
             .padding(10)
-            .border(Color.black, width: 1)
-            .background(Color(card.color))
+            .background {
+                RoundedRectangle(cornerRadius: 5)
+                    .fill(card.color)
+                    .stroke(.black, lineWidth: 3)
+                    .opacity(0.8)
+            }
+            .background(.white)
         }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             .padding()

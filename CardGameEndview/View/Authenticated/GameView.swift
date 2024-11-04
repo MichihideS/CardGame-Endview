@@ -9,54 +9,54 @@ import SwiftUI
 
 struct GameView: View {
     @EnvironmentObject var game: Game
-    @State private var isAnimating = false
+    @State private var startGame: Bool = false
     
     var body: some View {
         ZStack {
+            Background()
+            
             VStack {
-                VStack {
-                    Button(action: {
-                        game.drawCardsStart()
-                    }, label: {
-                        Text("DRAWTEST")
-                    }).padding()
-                    
-                    ScrollView(.horizontal) {
-                        HStack {
-                            ForEach(game.enemyCards) { cards in
-                                CardViewEnemy(card: cards)
+                if !startGame {
+                    VStack {
+                        ButtonMainMenu(function: {
+                            // TODO
+                        }, text: "Play Online")
+                        ButtonMainMenu(function: {
+                            game.drawCardsStart()
+                            startGame = true
+                        }, text: "Vs Computer")
+                    }
+                }
+                if startGame {
+                    VStack {
+                        ScrollView(.horizontal) {
+                            HStack {
+                                ForEach(game.enemyCards) { cards in
+                                    CardViewEnemy(card: cards)
+                                }
+                            }
+                        }
+                        
+                        Text("Enemy Cards: \(game.enemyCards.count)").padding(5).background(.thinMaterial.opacity(0.6))
+                        Text("Enemy Health: \(game.enemyHealth)").font(.title).padding(5).background(.thinMaterial.opacity(0.6))
+                        Text("Status: \(game.enemyStatus)").font(.title2).padding(5).background(.thinMaterial.opacity(0.6)).padding(.bottom, 30)
+                        
+                        Text("Status: \(game.playerStatus)").font(.title2).padding(5).background(.thinMaterial.opacity(0.6))
+                        Text("Player Health: \(game.playerHealth)").font(.title).padding(5).background(.thinMaterial.opacity(0.6)).padding(.bottom, 30)
+                        
+                        ScrollView(.horizontal) {
+                            HStack {
+                                ForEach(game.playerCards) { cards in
+                                    CardView(card: cards)
+                                }
                             }
                         }
                     }
                     
-                    Text("Enemy Cards: \(game.enemyCards.count)").padding(5).background(.thinMaterial.opacity(0.6))
-                    Text("Enemy Health: \(game.enemyHealth)").font(.title).padding(5).background(.thinMaterial.opacity(0.6))
-                    Text("Status: \(game.enemyStatus)").font(.title2).padding(5).background(.thinMaterial.opacity(0.6)).padding(.bottom, 30)
-                    
-                    Text("Status: \(game.playerStatus)").font(.title2).padding(5).background(.thinMaterial.opacity(0.6))
-                    Text("Player Health: \(game.playerHealth)").font(.title).padding(5).background(.thinMaterial.opacity(0.6)).padding(.bottom, 30)
-                    
-                    ScrollView(.horizontal) {
-                        HStack {
-                            ForEach(game.playerCards) { cards in
-                                CardView(card: cards)
-                            }
-                        }
-                    }
-                    
-                    Button(action: {
+                    ButtonGame(function: {
                         game.endTurn()
-                    }, label: {
-                        Text("End Turn")
-                    })
-                    .font(.title2)
-                    .padding()
-                    .foregroundColor(.black)
-                    .background {
-                        RoundedRectangle(cornerRadius: 10)
-                            .fill(.thinMaterial)
-                            .stroke(.black, lineWidth: 2)
-                    }
+                    }, text: "End Turn")
+                    .disabled(game.isCardPressed)
                 }
             }.overlay {
                 if let usedCardEnemy = game.usedCardEnemy {
@@ -68,38 +68,21 @@ struct GameView: View {
                 }
             }
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Image("logo_tower")
-            .resizable()
-            .scaledToFill()
-            .opacity(0.1)
-            .padding(100)
-        )
-        
-        .background(.thinMaterial)
         .overlay {
             if let _ = game.whoWon {
                 VStack {
-                    Text(game.whoWonText)
+                    MainTextTitle(text: game.whoWonText)
                     
-                    Button(action: {
+                    ButtonMainMenu(function: {
                         game.resetGame()
-                    }, label: {
-                        Text("Play Again")
-                        
-                    })
-                    .font(.title2)
-                    .padding()
-                    .foregroundStyle(.white)
-                    .background(.black)
-                    .clipShape(.buttonBorder)
+                    }, text: "Play Again")
                     
                 }
-          
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(.thinMaterial).ignoresSafeArea(.all)
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(.thinMaterial).ignoresSafeArea()
     }
 }
 

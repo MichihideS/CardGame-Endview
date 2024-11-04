@@ -18,10 +18,16 @@ struct CardViewEnemy: View {
         .foregroundColor(.black)
         .frame(width: 100, height: 150)
         .padding(10)
-        .border(Color.black, width: 1)
+        .background {
+            RoundedRectangle(cornerRadius: 5)
+                .stroke(.black, lineWidth: 3)
+                .opacity(0.8)
+        }
         
         .background(Image("game_bg")
-            .resizable())
+            .resizable()
+            .clipShape(.rect(cornerRadius: 5))
+        )
     }
 }
 

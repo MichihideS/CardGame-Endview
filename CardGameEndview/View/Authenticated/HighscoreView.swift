@@ -12,25 +12,19 @@ struct HighscoreView: View {
     @EnvironmentObject var game: Game
     
     var body: some View {
-        VStack {
-            ScrollView {
-                Text("Player List:")
-                    .font(.title)
-                
-                // Sorts the highscore list by win% with the help of a winratio function
-                ForEach(db.players.sorted(by: { game.winRatio(wins: $0.wins, losses: $0.losses) > game.winRatio(wins: $1.wins, losses: $1.losses)})) { player in
-                    PlayerCard(playerData: player)}
+        ZStack {
+            Background()
+            VStack {
+                ScrollView {
+                    Text("Player List:")
+                        .font(.title)
+                    
+                    // Sorts the highscore list by win% with the help of a winratio function
+                    ForEach(db.players.sorted(by: { game.winRatio(wins: $0.wins, losses: $0.losses) > game.winRatio(wins: $1.wins, losses: $1.losses)})) { player in
+                        PlayerCard(playerData: player)}
+                }
             }
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Image("logo_tower")
-            .resizable()
-            .scaledToFill()
-            .opacity(0.1)
-            .padding(100)
-        )
-        
-        .background(.thinMaterial)
     }
 }
 

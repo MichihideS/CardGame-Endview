@@ -29,17 +29,23 @@ struct CardView: View {
                         }
                     }
                     
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                    Image("game_bg")
+                        .resizable()
+                        .frame(width: 80, height: 80)
+                        .clipShape(.rect(cornerRadius: 5))
                     
-                    Text("\(game.checkSpecialAttribute(element: card.special))")
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                 }
                 .foregroundColor(.black)
                 .frame(width: 100, height: 150)
                 .padding(10)
-                .border(Color.black, width: 1)
-                .background(Color(card.color.opacity(0.5)))
+                .background {
+                    RoundedRectangle(cornerRadius: 5)
+                        .fill(card.color)
+                        .stroke(.black, lineWidth: 3)
+                        .opacity(0.8)
+                }
                 .background(.white)
-                //.background(.thinMaterial)
             })
             
         }

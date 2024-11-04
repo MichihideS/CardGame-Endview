@@ -28,6 +28,7 @@ struct CardViewBig: View {
                 Image("game_bg")
                     .resizable()
                     .frame(width: 180, height: 180)
+                    .clipShape(.rect(cornerRadius: 5))
                 
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                 
@@ -36,38 +37,22 @@ struct CardViewBig: View {
             .foregroundColor(.black)
             .frame(width: 200, height: 300)
             .padding(10)
-            .border(Color.black, width: 1)
-            .background(Color(card.color.opacity(0.8)))
-            .background(.thinMaterial)
+            .background {
+                RoundedRectangle(cornerRadius: 5)
+                    .fill(card.color)
+                    .stroke(.black, lineWidth: 3)
+                    .opacity(0.8)
+            }
+            .background(.white)
             
             
-            Button(action: {
+            ButtonGame(function: {
                 game.checkWhosTurn()
-            }, label: {
-                Text("Confirm")
-                    .frame(width: 120)
-                    .font(.title)
-                    .bold()
-                    .padding()
-                    .foregroundStyle(.white)
-                    .background(.black)
-                    .clipShape(.buttonBorder)
-                
-            })
+            }, text: "Confirm")
             
-            Button(action: {
+            ButtonGame(function: {
                 game.cancelBigCard()
-            }, label: {
-                Text("Cancel")
-                    .frame(width: 120)
-                    .font(.title)
-                    .bold()
-                    .padding()
-                    .foregroundStyle(.white)
-                    .background(.black)
-                    .clipShape(.buttonBorder)
-                
-            })
+            }, text: "Cancel")
         }
     }
 }
