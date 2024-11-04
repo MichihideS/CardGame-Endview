@@ -325,7 +325,6 @@ class Game: ObservableObject {
         }
         
         if enemyCardsAttack.isEmpty {
-            drawOneCard(whoDraws: 2)
             resetVariables()
         } else {
             attack = Int.random(in: 0...enemyCardsAttack.count - 1)
@@ -390,14 +389,24 @@ class Game: ObservableObject {
     func playerDefenseTurnCalculationsNoCard() {
         guard let usedCardEnemy = usedCardEnemy else { return }
         
-        let enemyAttack = checkForStatusDrown(attack: usedCardEnemy.attack)
+        var enemyAttack = 0
         
-        playerHealth = playerHealth - enemyAttack
-        
-        if usedCardEnemy.special > 0 {
-            checkSpecialAttackHit(special: usedCardEnemy.special)
+        if enemyStatus == DROWN {
+            enemyAttack = checkForStatusDrown(attack: usedCardEnemy.attack)
+        } else if enemyStatus == BLIND {
+            enemyAttack = checkForStatusBlind(attack: usedCardEnemy.attack)
+        } else {
+            enemyAttack = usedCardEnemy.attack
         }
         
+        if enemyAttack > 0  {
+            playerHealth = playerHealth - enemyAttack
+            
+            if usedCardEnemy.special > 0 {
+                checkSpecialAttackHit(special: usedCardEnemy.special)
+            }
+        }
+            
         resetVariables()
         checkWinner()
     }
@@ -560,20 +569,20 @@ class Game: ObservableObject {
         var attackModified = 0
         let randomNumber = Int.random(in: 1...2)
         
-        if whosTurn == 2 && enemyStatus == BLIND {
+        if whosTurn == 2 {
             if attack > 0 && randomNumber == 1 {
                 attackModified = 0
+            } else {
+                attackModified = attack
             }
-        } else if whosTurn == 2 {
-            attackModified = attack
         }
         
-        if whosTurn == 1 && playerStatus == BLIND {
+        if whosTurn == 1 {
             if attack > 0 && randomNumber == 1 {
                 attackModified = 0
+            } else {
+                attackModified = attack
             }
-        } else if whosTurn == 1 {
-            attackModified = attack
         }
         
         return attackModified
