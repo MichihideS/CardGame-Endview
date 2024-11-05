@@ -34,7 +34,7 @@ struct CardGameEndviewApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView().environmentObject(dbConnection).environmentObject(game)
+            StartScreenView().environmentObject(dbConnection).environmentObject(game)
         }
     }
 }
