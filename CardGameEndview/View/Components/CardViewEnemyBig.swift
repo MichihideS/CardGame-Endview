@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// Design card that shows when enemy uses a card to attack or defend.
 struct CardViewEnemyBig: View {
     @EnvironmentObject var game: Game
     var card: Card

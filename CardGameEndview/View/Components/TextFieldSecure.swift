@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// Component for the password textfields.
 struct TextFieldSecure: View {
     @State var label: String
     @State var text: Binding<String>

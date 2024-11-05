@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// View where you can register an account that gets added to FireBase DB.
 struct RegisterView: View {
     @EnvironmentObject var db: DbConnection
     @State var email = ""

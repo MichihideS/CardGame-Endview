@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// Design for the playercard that is shown when you go into highscore.
 struct PlayerCard: View {
     @EnvironmentObject var db: DbConnection
     var game = Game()

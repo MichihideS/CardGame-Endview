@@ -9,6 +9,7 @@ import Foundation
 import FirebaseFirestore
 import FirebaseAuth
 
+// Class for the DB connection to Firebase.
 class DbConnection: ObservableObject {
     var db = Firestore.firestore()
     var auth = Auth.auth()
@@ -23,6 +24,7 @@ class DbConnection: ObservableObject {
     var playerDataListener: ListenerRegistration?
     var playersListener: ListenerRegistration?
     
+    // Function to sign out user.
     func signOut() {
         do {
             try auth.signOut()
@@ -33,6 +35,7 @@ class DbConnection: ObservableObject {
         }
     }
     
+    // Function to register a user to the DB with a Email, Password and a Username.
     func registerPlayer(email: String, username: String, password: String) {
         auth.createUser(withEmail: email, password: password) { authResult, error in
             if let error = error {

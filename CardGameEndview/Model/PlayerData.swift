@@ -8,6 +8,7 @@
 import Foundation
 import FirebaseFirestore
 
+// Data for the DB, wins and losses is automatically set to 0.
 struct PlayerData: Codable, Identifiable {
     @DocumentID var id: String?
     var name: String

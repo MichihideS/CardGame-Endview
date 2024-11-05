@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// Component for the general title on every view.
 struct MainTextTitle: View {
     var text: String
     var body: some View {
@@ -18,7 +19,6 @@ struct MainTextTitle: View {
                 RoundedRectangle(cornerRadius: 0)
                     .fill(.thinMaterial)
                     .stroke(Color(UIColor(red: 0.3, green: 0.3, blue: 0.4, alpha: 1)), lineWidth: 5)
-                
             }
             .foregroundStyle(
                 Color(UIColor(red: 0.3, green: 0.3, blue: 0.4, alpha: 1))

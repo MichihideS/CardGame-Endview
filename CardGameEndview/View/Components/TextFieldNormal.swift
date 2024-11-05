@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// Component for the every textfield except passwords.
 struct TextFieldNormal: View {
     @State var label: String
     @State var text: Binding<String>

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// General background for all the views.
 struct Background: View {
     var body: some View {
         VStack {
@@ -19,9 +20,7 @@ struct Background: View {
             .opacity(0.1)
             .padding(150)
         )
-        
         .background(Color.blue.opacity(0.4))
-        
     }
 }
 

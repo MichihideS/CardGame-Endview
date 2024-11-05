@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// Design of the card when you press a small card to see more info.
 struct CardViewBig: View {
     @EnvironmentObject var game: Game
     var card: Card
@@ -65,7 +66,6 @@ struct CardViewBig: View {
                             }
                     }
                     .padding(.bottom, 5)
-
                 }
                 
                 Image(card.image)

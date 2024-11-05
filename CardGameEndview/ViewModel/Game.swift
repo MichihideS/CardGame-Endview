@@ -9,35 +9,33 @@ import Foundation
 import SwiftUI
 import AVFoundation
 
+// Class for the card game EndView.
 class Game: ObservableObject {
     var db = DbConnection()
     var cardDeck = CardDeck()
     
-    @Published var isComputer: Bool = false
+    // @Published var isComputer: Bool = false TODO
     
-    @Published var text: String = "Test"
     @Published var counter: Int = 0
-    
     @Published var playerCards: [Card] = []
     @Published var enemyCards: [Card] = []
     @Published var enemyCardsDefense: [Card] = []
     @Published var enemyCardsAttack: [Card] = []
     
-    @Published var enemyHealth = 50
-    @Published var playerHealth = 50
-    @Published var enemyMana = 7
-    @Published var playerMana = 7
+    @Published var enemyHealth: Int = 50
+    @Published var playerHealth: Int = 50
+    @Published var enemyMana: Int = 7
+    @Published var playerMana: Int = 7
     
-    @Published var enemyStatus = "Normal"
-    @Published var playerStatus = "Normal"
+    @Published var enemyStatus: String = "Normal"
+    @Published var playerStatus: String = "Normal"
     @Published var enemyStatusColor = Color(.white)
     @Published var playerStatusColor = Color(.white)
     
-    @Published var isCardPressed = false
-    @Published var whosTurn = 1
+    @Published var whosTurn: Int = 1
     @Published var whosTurnText: String? = nil
     @Published var whoWon: Int? = nil
-    @Published var whoWonText = ""
+    @Published var whoWonText: String = ""
     @Published var indexOfCardPressed: Int? = nil
     
     @Published var usedCard: Card? = nil
@@ -45,11 +43,12 @@ class Game: ObservableObject {
     @Published var usedCardEnemy: Card? = nil
     @Published var usedCardEnemyDefense: Card? = nil
     
+    @Published var isCardPressed: Bool = false
     @Published var isShowingBigCard: Bool = false
     @Published var isShowingBigCardEnemyDefense: Bool = false
     @Published var isShowingBigCardEnemyAttack: Bool = false
     @Published var isShowingWhosTurn: Bool = false
-    @Published var isNotAllowedToAct = false
+    @Published var isNotAllowedToAct: Bool = false
     
     let BURN = "Burned"
     let DROWN = "Drowned"
@@ -119,6 +118,7 @@ class Game: ObservableObject {
         }
     }
     
+    // Sets the text for whos turn it is with a sound and removes the text after 1 second.
     func checkWhosTurnText() {
         if whosTurn == 1 {
             whosTurnText = "Your Turn"
@@ -140,6 +140,11 @@ class Game: ObservableObject {
         }
     }
     
+    /*
+     * Checks so the card that you press during your turn is a valid card and if it is reduces the enemy health
+     * depending on status condidtions and how much defense the enemies defense card has. Also checks so you have enough
+     * "mana" to use the attack card and that the card you use is actually an attack card.
+     */
     func playerTurnCalculations() {
         var playerAttack = 0
         
@@ -205,7 +210,7 @@ class Game: ObservableObject {
         return specialText
     }
     
-    // When a player attacks and lands a hit with a special modifier it will set the status of the player accordingly.
+    // When a player attacks and lands a hit with a special modifier it will set the status of the player accordingly with color.
     func checkSpecialAttackHit(special: Int) {
         switch special {
         case 1:
@@ -294,7 +299,7 @@ class Game: ObservableObject {
     
     /*
      * Checks which defense card to use if enemy has any in the array and sets a new
-     * value to the card and, the defense card is randomized based on the new array created.
+     * value to the card and the defense card is randomized based on the new array created.
      */
     func enemyDefenseTurn() {
         let defense = Int.random(in: 0...enemyCardsDefense.count - 1)
@@ -317,8 +322,10 @@ class Game: ObservableObject {
         
     }
     
-    // Puts all the attack cards in a new array and randoms a card which is used for attack and deleted in the
-    // original array after
+    /*
+     * Puts all the attack cards in a new array and randoms a card which is used for attack and delete it in the
+     * original array after.
+     */
     func enemyTurn() {
         checkWinner()
         whosTurn = 2
@@ -398,6 +405,7 @@ class Game: ObservableObject {
         }
     }
     
+    // Calculates player health if no defense card was used by the player.
     func playerDefenseTurnCalculationsNoCard() {
         guard let usedCardEnemy = usedCardEnemy else { return }
         
@@ -423,7 +431,7 @@ class Game: ObservableObject {
         checkWinner()
     }
     
-    // Resets variables so the turns can repeat until someone reaches a winning condition
+    // Resets variables so the turns can repeat until someone reaches a winning condition.
     func resetVariables() {
         usedCardEnemy = nil
         usedCard = nil
@@ -443,7 +451,7 @@ class Game: ObservableObject {
         isNotAllowedToAct = false
     }
     
-    // Resets the whole game and starts it up again
+    // Resets the whole game and starts it up again.
     func resetGame() {
         counter = 0
         playerCards = []
@@ -476,6 +484,8 @@ class Game: ObservableObject {
         }
     }
     
+    
+    // Changes the button depending on if it's your turn or if you are defending.
     func endTurnText() -> String {
         var text = ""
         
@@ -609,7 +619,7 @@ class Game: ObservableObject {
         return attackModified
     }
     
-    // Checks the win percentage of the player
+    // Checks the win percentage of the player in the highscore list.
     func winRatio(wins: Int, losses: Int) -> Int {
         let winsDouble = Double(wins)
         let totalGamesDouble = Double(wins + losses)
@@ -624,6 +634,7 @@ class Game: ObservableObject {
         return Int(rounded)
     }
     
+    // Sets a color to the player in the highscore depending on how much win% they have.
     func winRatioColor(wins: Int, Losses: Int) -> Color {
         let colorNumber = winRatio(wins: wins, losses: Losses)
         var color = Color(.white)
@@ -651,7 +662,7 @@ class Game: ObservableObject {
         return color
     }
     
-    // Draw one card for End turn or start turn (CAN BE OPTIMIZED)
+    // Draw one card for End turn or start turn.
     func drawOneCard(whoDraws: Int) {
         if whoDraws == 1 {
             var playerCounter = 0

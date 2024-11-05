@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// View that shows the highscore of every player in the database and sorts it by winratio.
 struct HighscoreView: View {
     @EnvironmentObject var db: DbConnection
     @EnvironmentObject var game: Game

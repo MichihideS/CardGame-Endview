@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// Button component that is used when you are playing the game.
 struct ButtonGame: View {
     var function: () -> Void
     var text: String

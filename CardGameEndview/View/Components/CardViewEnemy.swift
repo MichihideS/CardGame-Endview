@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// Basic design for the enemy card deck overview
 struct CardViewEnemy: View {
     @EnvironmentObject var game: Game
     var card: Card

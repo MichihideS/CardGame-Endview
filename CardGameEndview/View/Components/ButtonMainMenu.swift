@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// Button component that is used when moving around in the menus.
 struct ButtonMainMenu: View {
     var function: () -> Void
     var text: String

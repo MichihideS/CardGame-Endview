@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// View for where you land when you log in.
 struct LoggedInView: View {
     @EnvironmentObject var db: DbConnection
     

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// The View for the gameplay.
 struct GameView: View {
     @EnvironmentObject var game: Game
     @EnvironmentObject var db: DbConnection
@@ -17,6 +18,7 @@ struct GameView: View {
             Background()
             
             VStack {
+                // This is shown before you start the game.
                 if !startGame {
                     VStack {
                         ButtonMainMenu(function: {
@@ -29,6 +31,7 @@ struct GameView: View {
                     }
                 }
                 
+                // This is shown when you start the game.
                 if startGame {
                     VStack {
                         ScrollView(.horizontal) {
@@ -137,6 +140,7 @@ struct GameView: View {
             }
         }
         .overlay {
+            // Is shown when the enemy uses an attack card.
             if let usedCardEnemy = game.usedCardEnemy {
                 if game.isShowingBigCardEnemyAttack {
                     CardViewEnemyBig(card: usedCardEnemy)
@@ -144,24 +148,28 @@ struct GameView: View {
             
             }
             
+            // Is shown when the enemy uses a defense card.
             if let usedCardEnemyDefense = game.usedCardEnemyDefense {
                 if game.isShowingBigCardEnemyDefense {
                     CardViewEnemyBig(card: usedCardEnemyDefense)
                 }
             }
             
+            // Is shown when you press a small card to get more info.
             if let index = game.indexOfCardPressed {
                 if game.isShowingBigCard {
                     CardViewBig(card: game.playerCards[index])
                 }
             }
             
+            // Is shown when it's the start of someones turn.
             if let whosTurnText = game.whosTurnText {
                 if game.isShowingWhosTurn {
                     GameTextTitle(text: whosTurnText)
                 }
             }
             
+            // Is shown when a winner is detected.
             if let _ = game.whoWon {
                 VStack {
                     MainTextTitle(text: game.whoWonText)

@@ -7,12 +7,14 @@
 
 import SwiftUI
 
+// Design for the basic card shown in the hand as a overview.
 struct CardView: View {
     @EnvironmentObject var game: Game
     var card: Card
     
     var body: some View {
         VStack {
+            // When you press a card the UUID of the card will be saved.
             Button(action: {
                 if game.isCardPressed == false {
                     game.checkIfCardIsPressed(uuid: card.id)
@@ -92,7 +94,6 @@ struct CardView: View {
             })
             .disabled(game.isNotAllowedToAct)
         }
-        
     }
 }
 

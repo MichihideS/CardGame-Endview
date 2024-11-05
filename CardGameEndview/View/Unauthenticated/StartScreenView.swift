@@ -8,6 +8,7 @@
 import SwiftUI
 import AVFoundation
 
+// View that gets shown when you start the game.
 struct StartScreenView: View {
     @EnvironmentObject var db: DbConnection
     @State private var isAnimating = false
@@ -15,6 +16,7 @@ struct StartScreenView: View {
     @State private var isKeyPressed = false
     
     var body: some View {
+        // Shown when you first enter.
         if !isKeyPressed {
             ZStack {
                 VStack {
@@ -117,6 +119,7 @@ struct StartScreenView: View {
                         value: isAnimating
                     )
                 
+                // Whole screen is a button.
                 Button(action: {
                     AudioServicesPlaySystemSound(1502)
                     isKeyPressed = true
@@ -135,6 +138,7 @@ struct StartScreenView: View {
                 self.introText.toggle()
             }
         } else {
+            // Is shown as soon as you press the screen.
             if db.currentPlayer != nil {
                 // Logged in view
                 NavigationStack {

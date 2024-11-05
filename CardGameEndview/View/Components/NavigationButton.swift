@@ -7,12 +7,13 @@
 
 import SwiftUI
 
+// Navigation link component to navigate within a navigation stack.
 struct NavigationButton <Destination: View>: View {
     var destination: Destination
     var text: String
     
     var body: some View {
-        NavigationLink(destination: { destination}) {
+        NavigationLink(destination: { destination }) {
             Text(text)
                 .font(.title)
                 .foregroundStyle(.thinMaterial)

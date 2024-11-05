@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// View where you can ethier login or register.
 struct LoginView: View {
     @EnvironmentObject var db: DbConnection
     @State var email = ""

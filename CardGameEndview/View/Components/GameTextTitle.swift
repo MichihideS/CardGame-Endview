@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// Component for showing whos turn it is when playing the game.
 struct GameTextTitle: View {
     var text: String
     var body: some View {
@@ -18,7 +19,6 @@ struct GameTextTitle: View {
             .background {
                 RoundedRectangle(cornerRadius: 10)
                     .fill(Color.black.opacity(0.7))
-                
             }
             .foregroundStyle(
                 .white
