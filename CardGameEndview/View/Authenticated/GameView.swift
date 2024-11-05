@@ -9,6 +9,7 @@ import SwiftUI
 
 struct GameView: View {
     @EnvironmentObject var game: Game
+    @EnvironmentObject var db: DbConnection
     @State private var startGame: Bool = false
     
     var body: some View {
@@ -68,7 +69,7 @@ struct GameView: View {
                                     .padding(5)
                                     .background {
                                         RoundedRectangle(cornerRadius: 5)
-                                            .fill(game.playerStatusColor.opacity(0.6))
+                                            .fill(game.enemyStatusColor.opacity(0.6))
                                             .stroke(.black, lineWidth: 1)
                                             .opacity(0.8)
                                     }
@@ -169,7 +170,11 @@ struct GameView: View {
                         game.resetGame()
                     }, text: "Play Again")
                     
-                    NavigationButton(destination: LoggedInView(), text: "Main Menu")
+                    ButtonMainMenu(function: {
+                        startGame = false
+                        game.resetGame()
+                        db.signOut()
+                    }, text: "Main Menu")
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(.thinMaterial).ignoresSafeArea()
