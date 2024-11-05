@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import AVFoundation
 
 class Game: ObservableObject {
     var db = DbConnection()
@@ -121,11 +122,13 @@ class Game: ObservableObject {
     func checkWhosTurnText() {
         if whosTurn == 1 {
             whosTurnText = "Your Turn"
+            AudioServicesPlaySystemSound(1504)
             withAnimation {
                 isShowingWhosTurn = true
             }
         } else {
             whosTurnText = "Enemy Turn"
+            AudioServicesPlaySystemSound(1507)
             withAnimation {
                 isShowingWhosTurn = true
             }
@@ -147,6 +150,7 @@ class Game: ObservableObject {
         guard let usedCard = usedCard else { return }
         
         if usedCard.attack > 0 && usedCard.cost <= playerMana {
+            AudioServicesPlaySystemSound(1105)
             playerMana = playerMana - usedCard.cost
             isNotAllowedToAct = true
             isShowingBigCard = false
@@ -257,12 +261,14 @@ class Game: ObservableObject {
         
         guard let index = index else { return }
         
+        AudioServicesPlaySystemSound(1105)
         indexOfCardPressed = index
         isCardPressed = true
     }
     
     // Resets the index and press card variables if you cancel the card you pressed.
     func cancelBigCard() {
+        AudioServicesPlaySystemSound(1105)
         indexOfCardPressed = nil
         isCardPressed = false
     }
@@ -305,6 +311,7 @@ class Game: ObservableObject {
             isShowingBigCardEnemyDefense = true
         }
         
+        AudioServicesPlaySystemSound(1111)
         enemyMana = enemyMana - enemyCardsDefense[defense].cost
         enemyCards.remove(at: index)
         
@@ -338,7 +345,7 @@ class Game: ObservableObject {
                 withAnimation {
                     self.isShowingBigCardEnemyAttack = true
                 }
-                
+                AudioServicesPlaySystemSound(1111)
                 guard let index = self.enemyCards.firstIndex(where: {
                     $0.id == self.enemyCardsAttack[attack].id
                 }) else { return }
@@ -460,6 +467,7 @@ class Game: ObservableObject {
     // Ends the turn and starts a new function depending on where you are in the game
     func endTurn() {
         drawOneCard(whoDraws: 1)
+        AudioServicesPlaySystemSound(1105)
         
         if whosTurn == 1 {
             enemyTurn()
@@ -496,10 +504,12 @@ class Game: ObservableObject {
             db.plusOne()
             whoWon = 1
             whoWonText = "You Won!"
+            AudioServicesPlaySystemSound(1022)
         } else if playerHealth <= 0{
             db.minusOne()
             whoWon = 2
             whoWonText = "You Lose!"
+            AudioServicesPlaySystemSound(1023)
         }
     }
     

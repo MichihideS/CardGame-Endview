@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct StartScreenView: View {
     @EnvironmentObject var db: DbConnection
@@ -72,7 +73,7 @@ struct StartScreenView: View {
                         )
                     
                     
-                    Text("Best card game you can find!")
+                    Text("Best card game you can find")
                         .bold()
                         .font(.title2)
                         .foregroundStyle(.white)
@@ -117,6 +118,7 @@ struct StartScreenView: View {
                     )
                 
                 Button(action: {
+                    AudioServicesPlaySystemSound(1502)
                     isKeyPressed = true
                 }, label: {
                     Text("")
