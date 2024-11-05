@@ -24,6 +24,8 @@ struct LoggedInView: View {
                     
                     NavigationButton(destination: HighscoreView(), text: "Highscore")
                     
+                    NavigationButton(destination: RulesView(), text: "Rules")
+                    
                     ButtonMainMenu(function: {
                         db.signOut()
                     }, text: "Sign Out")

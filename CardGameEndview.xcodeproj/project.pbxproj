@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C1503192CDAA42300A37943 /* RulesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1503182CDAA42300A37943 /* RulesView.swift */; };
 		9C3326632CD8EDDD008F65A8 /* TextFieldSecure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3326622CD8EDDD008F65A8 /* TextFieldSecure.swift */; };
 		9C3326652CD8EF7D008F65A8 /* MainTextTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3326642CD8EF7D008F65A8 /* MainTextTitle.swift */; };
 		9C3326672CD8F742008F65A8 /* NavigationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3326662CD8F742008F65A8 /* NavigationButton.swift */; };
@@ -65,6 +66,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9C1503182CDAA42300A37943 /* RulesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesView.swift; sourceTree = "<group>"; };
 		9C3326622CD8EDDD008F65A8 /* TextFieldSecure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldSecure.swift; sourceTree = "<group>"; };
 		9C3326642CD8EF7D008F65A8 /* MainTextTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTextTitle.swift; sourceTree = "<group>"; };
 		9C3326662CD8F742008F65A8 /* NavigationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationButton.swift; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 				9CD414022CC418370002629B /* GameView.swift */,
 				9CD414042CC418540002629B /* LoggedInView.swift */,
 				9CD6C7262CD2ABDE0034633A /* HighscoreView.swift */,
+				9C1503182CDAA42300A37943 /* RulesView.swift */,
 			);
 			path = Authenticated;
 			sourceTree = "<group>";
@@ -427,6 +430,7 @@
 				9C33266D2CD99D3F008F65A8 /* StartScreenView.swift in Sources */,
 				9CD414032CC418370002629B /* GameView.swift in Sources */,
 				9CD6C7232CD29FFA0034633A /* RegisterView.swift in Sources */,
+				9C1503192CDAA42300A37943 /* RulesView.swift in Sources */,
 				9CD414412CC5A8030002629B /* Game.swift in Sources */,
 				9C89FF072CCF9D2800686E49 /* CardViewEnemyBig.swift in Sources */,
 				9CE44B002CD8E7B2000941C3 /* Background.swift in Sources */,

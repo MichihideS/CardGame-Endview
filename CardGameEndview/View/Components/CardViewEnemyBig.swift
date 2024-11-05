@@ -95,5 +95,5 @@ struct CardViewEnemyBig: View {
 }
 
 #Preview {
-    CardViewEnemyBig(card: Card(name: "Test", attack: 30, defense: 20, cost: 5, special: 3, image: "", color: Color(.purple))).environmentObject(Game())
+    CardViewEnemyBig(card: Card(name: "Dark Assassin", attack: 30, defense: 20, cost: 5, special: 3, image: "dark_assassin", color: Color(.purple))).environmentObject(Game())
 }

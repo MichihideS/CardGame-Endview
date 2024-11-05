@@ -98,5 +98,5 @@ struct CardView: View {
 }
 
 #Preview {
-    CardView(card: Card(name: "Test", attack: 30, defense: 20, cost: 5, special: 3, image: "firey_wave", color: Color(.purple))).environmentObject(Game())
+    CardView(card: Card(name: "Color", attack: 30, defense: 20, cost: 5, special: 3, image: "firey_wave", color: Color(.gray))).environmentObject(Game())
 }
