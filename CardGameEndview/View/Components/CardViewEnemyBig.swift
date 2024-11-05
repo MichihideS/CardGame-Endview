@@ -15,14 +15,56 @@ struct CardViewEnemyBig: View {
         VStack {
             VStack {
                 VStack {
-                    Text("\(card.name)")
-                        .font(.title2)
-                        .bold()
+                    HStack {
+                        Text("\(card.name)")
+                            .font(.title3)
+                            .bold()
+                            .padding(1)
+                            .background {
+                                RoundedRectangle(cornerRadius: 5)
+                                    .fill(.thinMaterial.opacity(0.6))
+                                    .opacity(0.8)
+                            }
+                        
+                        Spacer()
+                        
+                        Text("\(card.cost)")
+                            .font(.title3)
+                            .bold()
+                            .padding(1)
+                            .foregroundStyle(.blue)
+                            .background {
+                                RoundedRectangle(cornerRadius: 5)
+                                    .fill(.thinMaterial)
+                                    .opacity(0.8)
+                            }
+                    }
+                    .padding(.top, 5)
                     
                     HStack {
                         Text("ATK: \(card.attack)")
+                            .bold()
+                            .font(.system(size: 18))
+                            .padding(1)
+                            .background {
+                                RoundedRectangle(cornerRadius: 5)
+                                    .fill(.thinMaterial.opacity(0.6))
+                                    .opacity(0.8)
+                            }
+                        
+                        Spacer()
+                        
                         Text("DEF: \(card.defense)")
+                            .bold()
+                            .font(.system(size: 18))
+                            .padding(1)
+                            .background {
+                                RoundedRectangle(cornerRadius: 5)
+                                    .fill(.thinMaterial.opacity(0.6))
+                                    .opacity(0.8)
+                            }
                     }
+                    .padding(.bottom, 5)
                 }
                 
                 Image(card.image)
@@ -33,6 +75,7 @@ struct CardViewEnemyBig: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                 
                 Text("\(game.checkSpecialAttribute(element: card.special))")
+                    .padding(.bottom, 5)
             }
             .foregroundColor(.black)
             .frame(width: 200, height: 300)

@@ -24,6 +24,8 @@ class Game: ObservableObject {
     
     @Published var enemyHealth = 50
     @Published var playerHealth = 50
+    @Published var enemyMana = 7
+    @Published var playerMana = 7
     
     @Published var enemyStatus = "Normal"
     @Published var playerStatus = "Normal"
@@ -60,7 +62,7 @@ class Game: ObservableObject {
         var playerCounter = 0
         var enemyCounter = 0
         
-        while playerCounter < 6 {
+        while playerCounter < 5 {
             let randomNumber = Int.random(in: 0...cardDeck.deckOfCards.count - 1)
             var isDupe = false
             
@@ -144,7 +146,8 @@ class Game: ObservableObject {
         
         guard let usedCard = usedCard else { return }
         
-        if usedCard.attack > 0 {
+        if usedCard.attack > 0 && usedCard.cost <= playerMana {
+            playerMana = playerMana - usedCard.cost
             isNotAllowedToAct = true
             isShowingBigCard = false
             checkEnemyDefenseCards()
@@ -270,7 +273,7 @@ class Game: ObservableObject {
      */
     func checkEnemyDefenseCards() {
         for card in enemyCards {
-            if card.defense > 0 {
+            if card.defense > 0 && card.cost <= enemyMana {
                 enemyCardsDefense.append(card)
             }
         }
@@ -301,7 +304,8 @@ class Game: ObservableObject {
         withAnimation {
             isShowingBigCardEnemyDefense = true
         }
-            
+        
+        enemyMana = enemyMana - enemyCardsDefense[defense].cost
         enemyCards.remove(at: index)
         
     }
@@ -314,12 +318,11 @@ class Game: ObservableObject {
         checkWhosTurnText()
         checkForStatusBurned()
         checkForStatusDeath()
-        drawOneCard(whoDraws: 2)
         
         var attack: Int = 0
         
         for card in enemyCards {
-            if card.attack > 0 {
+            if card.attack > 0 && card.cost <= enemyMana {
                 enemyCardsAttack.append(card)
             }
         }
@@ -340,6 +343,7 @@ class Game: ObservableObject {
                     $0.id == self.enemyCardsAttack[attack].id
                 }) else { return }
                 
+                self.enemyMana = self.enemyMana - self.enemyCardsAttack[attack].cost
                 self.enemyCards.remove(at: index)
                 self.isNotAllowedToAct = false
             }
@@ -355,7 +359,8 @@ class Game: ObservableObject {
         guard let usedCard = usedCard else { return }
         guard let usedCardEnemy = usedCardEnemy else { return }
         
-        if usedCard.defense > 0 {
+        if usedCard.defense > 0 && usedCard.cost <= playerMana {
+            playerMana = playerMana - usedCard.cost
             isNotAllowedToAct = true
             
             var enemyAttack = 0
@@ -422,6 +427,10 @@ class Game: ObservableObject {
         enemyDefenseResponse = 0
         checkForStatusBurned()
         checkForStatusDeath()
+        enemyMana = enemyMana + 3
+        playerMana = playerMana + 3
+        drawOneCard(whoDraws: 1)
+        drawOneCard(whoDraws: 2)
         isShowingBigCardEnemyDefense = false
         isShowingBigCardEnemyAttack = false
         isNotAllowedToAct = false
@@ -434,6 +443,8 @@ class Game: ObservableObject {
         enemyCards = []
         enemyHealth = 50
         playerHealth = 50
+        enemyMana = 7
+        playerMana = 7
         enemyStatus = NORMAL
         playerStatus = NORMAL
         isCardPressed = false

@@ -23,14 +23,28 @@ struct CardView: View {
             }, label: {
                 VStack {
                     VStack {
-                        Text("\(card.name)")
-                            .bold()
-                            .padding(1)
-                            .background {
-                                RoundedRectangle(cornerRadius: 5)
-                                    .fill(.thinMaterial.opacity(0.6))
-                                    .opacity(0.8)
-                            }
+                        HStack {
+                            Text("\(card.name)")
+                                .bold()
+                                .padding(1)
+                                .background {
+                                    RoundedRectangle(cornerRadius: 5)
+                                        .fill(.thinMaterial.opacity(0.6))
+                                        .opacity(0.8)
+                                }
+                            
+                            Spacer()
+                            
+                            Text("\(card.cost)")
+                                .bold()
+                                .padding(1)
+                                .foregroundStyle(.blue)
+                                .background {
+                                    RoundedRectangle(cornerRadius: 5)
+                                        .fill(.thinMaterial)
+                                        .opacity(0.8)
+                                }
+                        }
                         
                         HStack {
                             Text("ATK: \(card.attack)")
@@ -42,6 +56,9 @@ struct CardView: View {
                                         .fill(.thinMaterial.opacity(0.6))
                                         .opacity(0.8)
                                 }
+                            
+                            Spacer()
+                            
                             Text("DEF: \(card.defense)")
                                 .bold()
                                 .font(.system(size: 11))

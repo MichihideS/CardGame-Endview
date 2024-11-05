@@ -38,51 +38,85 @@ struct GameView: View {
                             }
                         }
             
-                        Text("Enemy Health: \(game.enemyHealth)")
-                            .font(.title)
-                            .padding(10)
-                            .background {
-                                RoundedRectangle(cornerRadius: 5)
-                                    .fill(.red.opacity(0.6))
-                                    .stroke(.black, lineWidth: 3)
-                                    .opacity(0.8)
+                        HStack {
+                            Text("Mana: \(game.enemyMana)")
+                                .font(.title)
+                                .padding(5)
+                                .background {
+                                    RoundedRectangle(cornerRadius: 5)
+                                        .fill(.blue.opacity(0.6))
+                                        .stroke(.black, lineWidth: 1)
+                                        .opacity(0.8)
+                                }
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding(.leading, 20)
+                            
+                            VStack {
+                                Text("Health: \(game.enemyHealth)")
+                                    .font(.title)
+                                    .padding(10)
+                                    .background {
+                                        RoundedRectangle(cornerRadius: 5)
+                                            .fill(.red.opacity(0.6))
+                                            .stroke(.black, lineWidth: 3)
+                                            .opacity(0.8)
+                                    }
+                                    .frame(maxWidth: .infinity, alignment: .trailing)
+                                
+                                Text("Status: \(game.enemyStatus)")
+                                    .font(.title2)
+                                    .padding(5)
+                                    .background {
+                                        RoundedRectangle(cornerRadius: 5)
+                                            .fill(game.playerStatusColor.opacity(0.6))
+                                            .stroke(.black, lineWidth: 1)
+                                            .opacity(0.8)
+                                    }
+                                    .frame(maxWidth: .infinity, alignment: .trailing)
                             }
-                            .frame(width: 300, alignment: .trailing)
-                            .padding(.top, 10)
+                            .padding(.trailing, 20)
+                        }
+                        .padding(.bottom, 10)
                         
-                        Text("Status: \(game.enemyStatus)")
-                            .font(.title2).padding(5)
-                            .background {
-                                RoundedRectangle(cornerRadius: 5)
-                                    .fill(game.enemyStatusColor.opacity(0.6))
-                                    .stroke(.black, lineWidth: 1)
-                                    .opacity(0.8)
+                        HStack {
+                            VStack {
+                                Text("Status: \(game.playerStatus)")
+                                    .font(.title2)
+                                    .padding(5)
+                                    .background {
+                                        RoundedRectangle(cornerRadius: 5)
+                                            .fill(game.playerStatusColor.opacity(0.6))
+                                            .stroke(.black, lineWidth: 1)
+                                            .opacity(0.8)
+                                    }
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                
+                                Text("Health: \(game.playerHealth)")
+                                    .font(.title)
+                                    .padding(10)
+                                    .background {
+                                        RoundedRectangle(cornerRadius: 5)
+                                            .fill(.green.opacity(0.6))
+                                            .stroke(.black, lineWidth: 3)
+                                            .opacity(0.8)
+                                    }
+                                    .frame(maxWidth: .infinity, alignment: .leading)
                             }
-                            .padding(.bottom, 30)
-                            .frame(width: 300, alignment: .trailing)
-                        
-                        Text("Status: \(game.playerStatus)")
-                            .font(.title2)
-                            .padding(5)
-                            .background {
-                                RoundedRectangle(cornerRadius: 5)
-                                    .fill(game.playerStatusColor.opacity(0.6))
-                                    .stroke(.black, lineWidth: 1)
-                                    .opacity(0.8)
-                            }
-                            .frame(width: 300, alignment: .leading)
-                        
-                        Text("Player Health: \(game.playerHealth)")
-                            .font(.title)
-                            .padding(10)
-                            .background {
-                                RoundedRectangle(cornerRadius: 5)
-                                    .fill(.green.opacity(0.6))
-                                    .stroke(.black, lineWidth: 3)
-                                    .opacity(0.8)
-                            }
-                            .frame(width: 300, alignment: .leading)
-                            .padding(.bottom, 10)
+                            .padding(.leading, 20)
+                            
+                            Text("Mana: \(game.playerMana)")
+                                .font(.title)
+                                .padding(5)
+                                .background {
+                                    RoundedRectangle(cornerRadius: 5)
+                                        .fill(.blue.opacity(0.6))
+                                        .stroke(.black, lineWidth: 1)
+                                        .opacity(0.8)
+                                }
+                                .frame(maxWidth: .infinity, alignment: .trailing)
+                                .padding(.trailing, 20)
+                        }
+                        .padding(.bottom, 10)
                         
                         ScrollView(.horizontal) {
                             HStack {
